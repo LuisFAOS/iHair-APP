@@ -7,8 +7,7 @@ import {
 function Index(props) {
     return (
         <Container
-            width={props.width}
-            height={props.height}
+            size={props.size}
         >
             <div class="lds-ring">
                 <div></div>
