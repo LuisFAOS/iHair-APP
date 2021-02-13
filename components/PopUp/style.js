@@ -78,6 +78,6 @@ export const Description = styled.p`
     height: 60px;
     display: flex;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
 `
 

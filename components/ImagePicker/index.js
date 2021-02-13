@@ -1,4 +1,6 @@
-import React,{useState} from 'react'
+import React from 'react'
+
+import PropTypes from 'prop-types'
 
 import {
     ImagePickerBox, 
@@ -31,6 +33,11 @@ function ImagePicker(props) {
             {props.image && <Image src={props.image.base64}/>}
         </Container>
     )
+}
+
+ImagePicker.propTypes={
+    id: PropTypes.string,
+    image: PropTypes.object,
 }
 
 export default ImagePicker

@@ -1,5 +1,7 @@
-import { Field } from 'formik'
 import React,{useRef, useState, useEffect} from 'react'
+
+import { Field } from 'formik'
+import PropTypes from 'prop-types'
 
 import {
     Container, 
@@ -63,6 +65,14 @@ function FormikField(props) {
             </span> 
         </>
     )
+}
+
+FormikField.propTypes={
+    labelText: PropTypes.string,
+    ErrorMessage: PropTypes.string,
+    isPassword: PropTypes.bool,
+    name: PropTypes.string,
+    inputValue: PropTypes.string
 }
 
 export default FormikField

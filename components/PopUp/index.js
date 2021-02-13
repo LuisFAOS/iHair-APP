@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import PropTypes from 'prop-types'
+
 import {
     Container,
     ClosePopUp,
@@ -11,7 +13,7 @@ import {
     DoneIcon,
 } from './style'
 
-function Index(props) {
+function PopUp(props) {
 
     let timeToClose;
 
@@ -53,5 +55,10 @@ function Index(props) {
         )
 }
 
+PopUp.propTypes = {
+    setPopUpDatas: PropTypes.func,
+    iconName: PropTypes.string,
+    message: PropTypes.string,
+}
 
-export default Index
+export default PopUp

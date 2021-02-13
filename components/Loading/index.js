@@ -1,10 +1,12 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 import {
     Container
 } from './style'
 
-function Index(props) {
+function Spinner(props) {
     return (
         <Container
             size={props.size}
@@ -19,4 +21,8 @@ function Index(props) {
     )
 }
 
-export default Index
+Spinner.propTypes = {
+    size: PropTypes.string
+}
+
+export default Spinner
