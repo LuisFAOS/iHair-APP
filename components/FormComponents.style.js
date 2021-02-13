@@ -46,6 +46,6 @@ export const Form = styled(FormikForm)`
 export const Title = styled.div`
     padding: 0px 15px 15px 15px;
 
-    font-size: 22px;
+    font-size: 1.7rem;
     
 `

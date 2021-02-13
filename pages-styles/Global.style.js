@@ -11,11 +11,11 @@ export default createGlobalStyle `
         max-height: 100vh;
         max-width:100vw;
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
     }
     *, button, input {
         border: 0;
-        background: none;font-family: 'Roboto', sans-serif;
+        background: none; font-family: 'Roboto', sans-serif;
         font-weight: 400;
     }
     html {
@@ -25,6 +25,6 @@ export default createGlobalStyle `
     --darkred: #74141e;
     --lightblue: #2C8ED6;
     --red: #DC3545;
-    --shadow: #c7c7c7;
+    --shadow: #d7d7d7;
   }
 `
