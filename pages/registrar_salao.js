@@ -3,11 +3,11 @@ import React,{useState} from 'react';
 import { baseURL } from '../baseURL'
 import getCookie from '../getCookie'
 
-import Form1 from '../components/RegisterSalonForms/Form1';
-import Form2 from '../components/RegisterSalonForms/Form2';
-import Form3 from '../components/RegisterSalonForms/Form3';
-import Form4 from '../components/RegisterSalonForms/Form4';
-import Form5 from '../components/RegisterSalonForms/Form5';
+import Form1 from '../components/SalonRegistrationForms/Form1';
+import Form2 from '../components/SalonRegistrationForms/Form2';
+import Form3 from '../components/SalonRegistrationForms/Form3';
+import Form4 from '../components/SalonRegistrationForms/Form4';
+import Form5 from '../components/SalonRegistrationForms/Form5';
 
 import { 
     Container,
@@ -149,9 +149,7 @@ function RegisterSalon() {
                                 }} 
                                 type="button">
 
-                                {loading ? <Loading 
-                                                width="80" 
-                                                height="10"/> 
+                                {loading ? <Loading size="small"/> 
                                             : 
                                             activedIndexForm > 3 ? "Concluir" : "Próximo"                                   
                                 }

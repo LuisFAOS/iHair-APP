@@ -85,7 +85,7 @@ export const FormBox = styled.div`
     }
 
     @media screen and (max-width: 550px){
-        height: 750px;
+        height: 100vh;
         max-width: 100%!important;
     }
 
