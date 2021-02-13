@@ -25,10 +25,12 @@
     "cpf-cnpj-validator": "^1.0.3",
     "formik": "^2.2.6",
     "next": "^10.0.5",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1",
     "styled-icons": "^10.26.0",
+    "swr": "^0.4.2",
     "yup": "^0.32.8"
   }
 }
