@@ -3,8 +3,11 @@ import React,{useEffect,useState} from "react"
 import {
     Container,
     Wrapper,
-    Title,
 } from "./style"
+
+import {
+    Title,
+} from "../../FormComponents.style"
 
 import ImagePicker from "../../ImagePicker"
 import { baseURL } from "../../../baseURL"

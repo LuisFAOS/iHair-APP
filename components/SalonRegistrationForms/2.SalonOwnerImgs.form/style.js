@@ -23,9 +23,3 @@ export const Container = styled.div`
         }
     }
 `
-
-export const Title = styled.div`
-    padding: 0px 15px 15px 15px;
-
-    font-size: 22px;
-`
