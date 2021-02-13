@@ -71,6 +71,7 @@ function Form2(props){
             }
         }catch(error){
             console.log(error.message)
+            props.onPopUpEvent("warningIcon", 'Error interno. Nos desculpe e por favor, aguarde.')
         }
         props.setLoading(false)
     }

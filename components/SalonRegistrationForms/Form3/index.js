@@ -45,7 +45,8 @@ function Index(props) {
             }
             
         }catch(error){
-            return error.message
+            console.log(error.message)
+            props.onPopUpEvent("warningIcon", 'Error interno. Nos desculpe e por favor, aguarde.')
         }
         props.setLoading(false)
     }
