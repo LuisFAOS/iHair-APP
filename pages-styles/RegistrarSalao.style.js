@@ -59,7 +59,7 @@ export const ProgressSide = styled.div`
 `
 
 export const Icon = styled.img`
-    margin: 33px 0px;
+    margin: 20px 0px;
     margin-bottom: 20px;
     height: 180px;
 `
@@ -67,25 +67,25 @@ export const Icon = styled.img`
 export const FormBox = styled.div`
     display: flex;
     flex-direction: column;
-    position: relative;
     align-items: center;
+    justify-content: space-between;
 
     width: 750px;
     max-width: 97%;
-    height: 520px;
+    height: 525px;
     border-radius: 4px;
     border: 1px solid #f5f5f5;
     
     box-shadow: 1px 1px 3px var(--shadow);
 
-    background-color: #fcfcfc;
+    background-color: #ffffff;
 
     @media screen and (max-width: 1100px){
         margin: auto;
     }
 
     @media screen and (max-width: 550px){
-        height: 100vh;
+        height: 95vh;
         max-width: 100%!important;
     }
 
@@ -148,11 +148,8 @@ export const ProgressCircle = styled.div`
 `
 
 export const Footer = styled.div`
-    border: 1px solid whitesmoke;
+    border-top: 1px solid whitesmoke;
     box-shadow: 0px -2px 2px whitesmoke;
-
-    position: absolute;
-    bottom: 0px;
 
     display: flex;
     justify-content: space-between;
@@ -194,12 +191,10 @@ export const CompressedProgressBar = styled.div`
     display: flex;
     justify-content: space-around;
 
-    position: absolute;
-    top: 5px;
-
     height: 40px;
     width: 300px;
     max-width: 95%;
-    margin: auto;
+    margin: 0px auto;
+    margin-top: 10px;
 `
 

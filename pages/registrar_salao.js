@@ -1,13 +1,12 @@
 import React,{useState} from 'react';
 
-import { baseURL } from '../baseURL'
 import getCookie from '../getCookie'
 
-import Form1 from '../components/SalonRegistrationForms/Form1';
-import Form2 from '../components/SalonRegistrationForms/Form2';
-import Form3 from '../components/SalonRegistrationForms/Form3';
-import Form4 from '../components/SalonRegistrationForms/Form4';
-import Form5 from '../components/SalonRegistrationForms/Form5';
+import SalonOwnerTextDatasForm from '../components/SalonRegistrationForms/1.SalonOwnerTextDatas.form';
+import SalonOwnerImgsForm from '../components/SalonRegistrationForms/2.SalonOwnerImgs.form';
+import LoginForm from '../components/SalonRegistrationForms/3.Login.form';
+import SalonP1Form from '../components/SalonRegistrationForms/p1.Salon.form';
+import SalonLastStepsForm from '../components/SalonRegistrationForms/SalonLastSteps.form';
 
 import { 
     Container,
@@ -69,22 +68,22 @@ function RegisterSalon() {
     ]
 
     const Forms = [
-        <Form1 
+        <SalonOwnerTextDatasForm 
             ownerDatas={ownerDatas}
             nextPageHandler={nextPageHandler}/>,
-        <Form2
+        <SalonOwnerImgsForm
             ownerDatas={ownerDatas}
             onPopUpEvent={onPopUpEvent}
             setLoading={setLoading}
             nextPageHandler={nextPageHandler}/>,
-        <Form3
+        <LoginForm
             setLoading={setLoading}
             onPopUpEvent={onPopUpEvent}
             nextPageHandler={nextPageHandler}/>,
-        <Form4
+        <SalonP1Form
             salonDatas={salonDatas}
             nextPageHandler={nextPageHandler}/>,
-        <Form5
+        <SalonLastStepsForm
             setLoading={setLoading}
             onPopUpEvent={onPopUpEvent}
             salonDatas={salonDatas}
