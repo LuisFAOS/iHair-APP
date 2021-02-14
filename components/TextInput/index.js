@@ -1,5 +1,7 @@
 import React,{useRef, useState, useEffect} from 'react'
 
+import PropTypes from 'prop-types'
+
 import {
     Container, 
     ShowPasswordIcon, 
@@ -67,6 +69,16 @@ function TextInput(props) {
             </span> 
         </>
     )
+}
+
+TextInput.propTypes = {
+    labelText: PropTypes.string,
+    ErrorMessage: PropTypes.string,
+    isPassword: PropTypes.bool,
+    name: PropTypes.string,
+    inputValue: PropTypes.string,
+    changed: PropTypes.func,
+    blured: PropTypes.func,
 }
 
 export default TextInput

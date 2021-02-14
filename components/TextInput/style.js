@@ -11,29 +11,31 @@ export const Container = styled.div`
     border: 1px solid gainsboro;
     border-radius: 3px;
 
-    ${props => props.isFocus ? css`
-        border: 1px solid #8a8686;
+    ${props => props.isFocus ? 
+        css` border: 1px solid #8a8686;
 
-        & > label {    
-            width: auto;
+            & > label {    
+                color: #656565;
 
-            line-height: 15px;
-            padding: 0px 4px;
-            margin-left: 4px;
-            top: -7px;
-        } 
-    `: css`
-        & > label {
-            padding-left: 8px;
-            padding-top: 3px;
-            width: 100%;
-            line-height: 35px;
-            top: 0px;
-            
-            cursor: pointer;
+                width: auto;
 
-        } 
-    `}
+                line-height: 15px;
+                padding: 0px 4px;
+                margin-left: 4px;
+                top: -7px;
+            }`
+            : 
+        css` & > label {
+                color: #a8a8a8;
+                line-height: 35px;
+
+                width: 100%;
+
+                padding-left: 8px;
+                padding-top: 3px;
+                top: 0px;
+            }`
+        }
 
     & ~ span{
         margin: 3px 15px;
@@ -46,7 +48,6 @@ export const Container = styled.div`
     }
 
     & > label{
-        color: gray;
         font-size: 15px;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -55,6 +56,8 @@ export const Container = styled.div`
         
         transition: .2s;
         background-color: white;
+
+        cursor: pointer;
     }
 
     & > input {
@@ -66,7 +69,6 @@ export const Container = styled.div`
 
         &:focus {
             outline: none;
-
         }
     }
 `
