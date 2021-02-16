@@ -2,7 +2,7 @@
   "name": "iHair-APP",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "home.js",
   "scripts": {
     "dev": "next dev",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +24,7 @@
     "cep-promise": "^4.0.4",
     "cpf-cnpj-validator": "^1.0.3",
     "formik": "^2.2.6",
+    "js-cookie": "^2.2.1",
     "next": "^10.0.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
