@@ -26,5 +26,6 @@ export default createGlobalStyle `
     --lightblue: #2C8ED6;
     --red: #DC3545;
     --shadow: #d7d7d7;
+    --whiteborder: #f5f5f5;
   }
 `
