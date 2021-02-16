@@ -6,6 +6,7 @@ import Link from 'next/link'
 import TextInput from '../components/TextInput'
 import CheckBox from '../components/CheckBox'
 import PopUp from '../components/PopUp'
+import Loading from '../components/Loading'
 
 import {
     Container,
@@ -35,8 +36,6 @@ function Login() {
 
         try {
             const apiURL = `${baseURL}/${isSalonOwner ? 'salon-owner' : 'normal-user'}/login`
-
-            console.log(apiURL)
 
             const loginResponse = await fetch(apiURL,{
                 method: 'POST',
@@ -115,7 +114,13 @@ function Login() {
                 <LoginButton
                     onClick={handleSubmit}
                 >
-                    Entrar
+                    {loading ? 
+                        <Loading 
+                            size="small"
+                            color="black"
+                        /> 
+                            : 
+                        "Entrar"}
                 </LoginButton>
                 <Link href="/cadastrar_usuario">
                     <SignUpButton>
