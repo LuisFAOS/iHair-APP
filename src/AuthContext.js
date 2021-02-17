@@ -8,25 +8,31 @@ const AuthContext = createContext({ isSigned: false, authDatas: {} })
 export function AuthProvider({children}) {
 
     const [authDatas, setAuthDatas] = useState(null)
+    const [loading, setLoading] = useState(true) 
     
     useEffect(() => {
-        const authOBJ = {
-            client: getCookie('client'),
-            authToken: getCookie('authToken')
-        } 
-
-        setAuthDatas({
-            ...authOBJ
-        })
+        const client = getCookie('client')
+        const token = getCookie('authToken')
+        if(client && token){
+            const authOBJ = {
+                client,
+                token
+            } 
+            
+            setAuthDatas({
+                ...authOBJ
+            })
+        }
+        setLoading(false)
     },[])
     
     
-    async function signOut() {
+    const signOut = () => {
         deleteAllCookies()
         setAuthDatas(null);
     }
     
-    const signIn = async ({client, permissionOf, authToken})=> {
+    const signIn = ({client, permissionOf, authToken}) => {
         setAuthDatas({client, permissionOf, authToken})
 
         const todayDate = new Date()
@@ -39,7 +45,7 @@ export function AuthProvider({children}) {
     } 
     
     return (
-        <AuthContext.Provider value={{isSigned: !!authDatas, authDatas, signIn, signOut}}>
+        <AuthContext.Provider value={{isSigned: !!authDatas, loading, authDatas, signIn, signOut}}>
             {children}
         </AuthContext.Provider>
     )
