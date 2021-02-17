@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { baseURL } from '../native/baseURL'
 import AuthContext from '../AuthContext'
@@ -21,7 +22,20 @@ import {
     SignUpButton,
 } from '../styles/login.style'
 
-function Login() {
+function Login(props) {
+    
+    const router = useRouter()
+
+    const [popUpDatas, setPopUpDatas] = useState(null)
+    
+    useEffect(() => {
+        if(location.href.split("redirect=").pop() === 'true'){
+            setPopUpDatas({
+                iconName: 'warningIcon',
+                message: 'Você tem que fazer login para continuar.'
+            })
+        }
+    }, [])
 
     const {signIn} = useContext(AuthContext)
 
@@ -30,7 +44,6 @@ function Login() {
         password: ''
     })
     const [isSalonOwner, setIsSalonOwner] = useState(false)
-    const [popUpDatas, setPopUpDatas] = useState(null)
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = async () => {
@@ -55,8 +68,8 @@ function Login() {
                 })
             }else{
                 const authDatas = await loginResponse.json()
-
                 signIn(authDatas)
+                await router.push('/home')
             }
         } catch (internalError) {
             console.error(internalError)
