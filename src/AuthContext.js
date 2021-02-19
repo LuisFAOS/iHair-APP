@@ -11,7 +11,10 @@ export function AuthProvider({children}) {
     const [loading, setLoading] = useState(true) 
     
     useEffect(() => {
-        const client = getCookie('client')
+        const client = {
+            ...JSON.parse(getCookie('client')).client,
+            permissionOf: JSON.parse(getCookie('client')).permissionOf
+        }
         const token = getCookie('authToken')
         if(client && token){
             const authOBJ = {
@@ -39,9 +42,9 @@ export function AuthProvider({children}) {
         todayDate.setTime(todayDate.getTime() + (3 * 24 * 60 * 60 * 1000))         
 
         document.cookie = `authToken=${authToken}; expires=${todayDate}; path=/`
-        document.cookie = `client=${{
+        document.cookie = `client=${JSON.stringify({
             client, permissionOf
-        }}; expires=${todayDate}; path=/`
+        })}; expires=${todayDate}; path=/`
     } 
     
     return (
