@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
-import { PersonLinesFill, GeoAltFill } from 'styled-icons/bootstrap'
+import { PersonLinesFill, GeoAltFill, X } from 'styled-icons/bootstrap'
 import { KeyboardArrowDown } from 'styled-icons/material'
 
 
@@ -20,6 +20,26 @@ export const Container = styled.div`
     
     background-color: #273036;
     border-bottom: 1px solid #1e252b;
+
+    @media screen and (max-width: 900px){
+        justify-content: center;
+        flex-direction: column;
+
+        height: 180px;
+
+        & > div > .logo{
+            margin: 0px!important;
+        }
+
+        
+        & > div > #search-salons-box, .user-menu{
+            display: none;
+        }
+
+        & > div.user-localization-box{
+            margin-top: 15px;
+        }
+    }
 `
 
 export const UserIcon = styled(PersonLinesFill)`
@@ -51,13 +71,26 @@ export const LocalizationContainer = styled.div`
         color: gray;
         font-weight: 600;
     }
+
+    & > div > div.user-local{
+        max-width: 170px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    & > div{
+        display: flex;
+        align-items: center;
+    }
 `
 
 export const LocalizationIcon = styled(GeoAltFill)`
     width: 12px;
     height: 12px;
 
-    margin-right: 8px;
+    margin-right: 5px;
 
     color: white;
 `
@@ -69,4 +102,54 @@ export const ArrowDownIcon = styled(KeyboardArrowDown)`
     margin-left: 3px;
 
     color: white;
+`
+
+export const UserCompleteAddressBox = styled.div`
+    position: fixed;
+    top: 90px;
+    right: 25%;
+    z-index: 999999;
+
+    width: 300px;
+    max-width: 100%;
+    padding: 15px;
+
+    background-color: white;
+    box-shadow: 1px 1px 2px var(--shadow);
+
+    border: 1px solid var(--whiteborder);
+    border-radius: 2px;
+
+    font-size: .85rem;
+
+    margin-bottom: 4px;
+
+
+    & > div{
+        display: flex;
+        justify-content: center;
+
+        margin-bottom: 10px;
+    }
+
+    & > div:first-child{
+        margin-bottom: 15px;
+        padding: 2px;
+
+        cursor: pointer;
+
+        border: 1px solid gainsboro;
+    }
+
+    @media screen and (max-width: 400px){
+        right: 0px;
+    }
+`
+
+export const CloseIcon = styled(X)`
+    width: 15px;
+    height: 15px;
+    margin: auto;
+
+    color: gray;
 `
