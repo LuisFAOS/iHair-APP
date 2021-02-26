@@ -1,83 +1,115 @@
-import React from 'react';
-import withAuth from '../HOCs/WithAuth';
+import React from 'react'
 
+import Link from 'next/link'
 import Image from 'next/image'
+import { Button } from '../components/Button.style'
 
 import {
-    ProjectApresentation,
-    SalonListWrapper,
-    Header,
-    SalonListContainer,
-    CirclesWrapper,
     Container,
-    SeeListButton,
-    ArrowDownIcon,
-    Circle,
-    FilterList,
+    Apresentation,
+    ImageBox,
+    ProjectDescription,
+    LoginButton,
+    SalonRegistrationBenefits,
+    BenefitsList,
+    BenefitCard,
+    PracticalityIcon,
+    VisibilityIcon,
+    RateIcon,
+    ButtonBox,
 } from '../styles/home.style'
 
-function Home(){
+function Beneficios() {
     return (
         <Container>
-            <ProjectApresentation>
-                <div>
-                    <p>iHair</p>
-                    <p>    
-                        Facilidade, Agilidade, Satisfação e Qualidade, você encontra aqui!<br/>
-                        Encontre os melhores salões (Cabeleleiros, Barbeiros e etc) da sua região<br/>e utilize seus diversos serviços.
+             <Apresentation>
+                <ImageBox>
+                    <Image
+                        width={450}
+                        height={450}
+                        src='/home/welcome.svg'
+                    />
+                </ImageBox>
+                <ProjectDescription>
+                    <p>
+                            iHair está aqui para facilitar a conexão entre
+                        os salões e os clientes.
+                    </p> 
+                    <p>
+                        Tais "Salões" nada mais são que
+                        cabelereiros(as), barbeiros(as), manicures ou qualquer 
+                        profissional que trabalhe na área da beleza.<br/>
+                        Se junte a nós!
                     </p>
-                    <SeeListButton onClick={() => scrollTo(0,520)}>
-                        <ArrowDownIcon/>
-                    </SeeListButton>
-                </div>
-            </ProjectApresentation>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 230">
-                <path fill="#273036" fillOpacity="1" d="M0,160L30,154.7C60,149,120,139,180,133.3C240,128,300,128,360,128C420,128,480,128,540,133.3C600,139,660,149,720,160C780,171,840,181,900,160C960,139,1020,85,1080,74.7C1140,64,1200,96,1260,117.3C1320,139,1380,149,1410,154.7L1440,160L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path>
+                    <Link href="/login">
+                        <LoginButton>
+                            Logar-me
+                        </LoginButton>
+                    </Link>
+                </ProjectDescription>
+             </Apresentation>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300">
+                <path fill="#273036" fillOpacity="1" d="M0,96L48,128C96,160,192,224,288,229.3C384,235,480,181,576,133.3C672,85,768,43,864,64C960,85,1056,171,1152,208C1248,245,1344,235,1392,229.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
-            <SalonListWrapper>
-                <Header>
-                    <Image 
-                        width={120}
-                        height={120}
-                        src="/registerSalon/barbershop.png"/>
-                    
-                    <span> 
-                        Lista de salões
-                    </span> 
-                </Header>
-                <FilterList>
-                    <ul className="profession-filters">
-                        <li>
-                            Cabeleleiro
-                        </li>
-                        <li>
-                            Manicure
-                        </li>
-                        <li>
-                            Barbeiro
-                        </li> 
-                    </ul>
-                    <ul className="site-points-filters">
-                        <li>
-                            Distância
-                        </li>
-                        <li>
-                            Preço
-                        </li>
-                        <li>
-                            Avaliação    
-                        </li> 
-                    </ul>
-                </FilterList>
-                <SalonListContainer>
-
-                </SalonListContainer>
-                <CirclesWrapper>
-                    Ver mais salões
-                </CirclesWrapper>
-            </SalonListWrapper>
+             <SalonRegistrationBenefits>
+                 <p>Por que registrar meu salão?</p>
+                 <BenefitsList>
+                     <BenefitCard>
+                        <span>
+                            Praticidade
+                        </span>
+                        <div>
+                            <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                            </svg>
+                            <PracticalityIcon/>
+                        </div>
+                        <p>
+                            Será mais fácil a gerenciamento dos horários, pois
+                            ajudaremos com isso.
+                        </p>
+                     </BenefitCard>
+                     <BenefitCard>
+                        <span>
+                            Visibilidade
+                        </span>
+                        <div>
+                            <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                            </svg>
+                            <VisibilityIcon/>
+                        </div>
+                        <p>
+                            Com um bom serviço pregado, você ficará entre os 
+                            melhores de sua região.
+                        </p>
+                     </BenefitCard>
+                     <BenefitCard>
+                        <span>
+                            Críticas
+                        </span>
+                        <div>
+                            <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                            </svg>
+                            <RateIcon/>
+                        </div>
+                        <p>
+                            Receba criticas de maneira única e geral para saber
+                            no que deve melhorar e continuar aprimorando.
+                        </p>
+                     </BenefitCard>
+                 </BenefitsList>
+                 <ButtonBox>
+                    <Link href="registrar_salao">
+                        <Button>
+                            Registrar meu salão!
+                        </Button>
+                    </Link>
+                 </ButtonBox>
+             </SalonRegistrationBenefits>
         </Container>
     )
-} 
+}
 
-export default withAuth(Home)
+export default Beneficios

@@ -1,116 +1,189 @@
-import styled from 'styled-components'
-import { KeyboardArrowDown } from 'styled-icons/material'
+import styled, { css } from 'styled-components'
+import { EyeFill, HourglassSplit, StarFill } from 'styled-icons/bootstrap'
 import { Button } from '../components/Button.style'
 
 export const Container = styled.div`
-
 `
 
-export const ProjectApresentation = styled.div`
+export const Apresentation = styled.div`
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
 
-    padding: 120px 30px;
-    padding-bottom: 0px;
+    padding: 0px 50px;
+    padding-top: 30px;
 
-    background-color: #273036;
-
-    & > div{
-        text-align: center;
-        color: white;
-
-        & > :first-child {
-            font-size: 4.5rem;
-
-            margin-bottom: 40px;
-        } 
-    }
+    color: white;
+    background-color: var(--black);
 
     & ~ svg {
         margin-top: -3px;
-        height: auto;
+        transform: rotate(180deg);
     }
 
-`
+    @media screen and (max-width: 1060px){
+        flex-direction: column;
+    }
 
-export const SeeListButton = styled(Button)`
-    color: white;
-
-    width: 100px;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 5px;
-
-    padding: 3px;
-`
-
-export const ArrowDownIcon = styled(KeyboardArrowDown)`
-    width: 32px;
-    height: 32px;
-`
-
-export const SalonListWrapper = styled.div`
-    height: 180vh;
-    padding: 30px;
-    padding-top: 0px;
-`
-
-export const Header = styled.div`
-    display: flex;
-    align-items: center;
-
-    margin-top: 20px;
-
-    & > span{
-        margin-left: 15px;
-        font-size: 2.3rem;
+    @media screen and (max-width: 500px){
+        padding: 0px 20px;
+        padding-top: 40px;
     }
 `
 
-export const FilterList = styled.div`
+export const ImageBox = styled.div`
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+`
 
+export const ProjectDescription = styled.div`
+    width: 500px;
+    max-width: 100%;
 
-    @media screen and (max-width: 510px){
-        display: none;
+    padding-left: 20px;
+
+    & > :first-child{
+        font-size: 2.2rem;
+        font-weight: 600;
+
+        margin-bottom: 10px;
+    }
+    & > :not(:first-child){
+        margin-bottom: 20px;
+        font-size: .95rem;
     }
 
-    & > ul{
-        cursor: pointer;
+    @media screen and (max-width: 1060px){
+        margin-top: 50px;
+        margin-bottom: 30px;
+        padding-left: 0px;
+    }
 
-        display: flex;
-        justify-content: center;
-        list-style-type: none;
+    @media screen and (max-width: 620px){
+        & > :first-child{
+            font-size: 1.7rem;
+            font-weight: 600;
 
-        & > li{
-            padding: 8px 25px;
-            margin: 10px;
-
-            border: 1px solid gainsboro;
-            border-radius: 18px;
-
-            color: gray;
-
-            transition: .10s;
-
-            :hover{
-                background-color: whitesmoke;
-            }
+            margin-bottom: 10px;
+        }
+        & > :not(:first-child){
+            margin-bottom: 40px;
+            font-size: .85rem;
         }
     }
 `
 
-export const SalonListContainer = styled.div`
-    height: calc(180vh - 300px);
+export const LoginButton = styled(Button)`
+    width: 150px;
 `
 
-export const CirclesWrapper = styled(Button)`
-    width: 60vw;
-    margin: auto;
+export const SalonRegistrationBenefits = styled.div`
+    padding: 40px;
 
-    background-color: #DC3545;
-    color: white;
+    margin-top: 40px;
 
+    & > p{
+        font-size: 1.4rem;
+        text-align: center;
+
+        margin-bottom: 30px;
+    }
+
+    & > button{
+        width: 360px;
+        max-width: 90%;
+    }
+`
+
+export const ButtonBox = styled.div`
     display: flex;
-    justify-content: center; 
+    justify-content: center;
+
+    margin: 40px 0px;
+`
+
+export const BenefitsList = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 690px){
+        flex-direction: column;
+    }
+`
+
+export const BenefitCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 250px;
+    width: 180px;
+    padding: 20px 10px;
+
+    border: 1px solid var(--whiteborder);
+
+    @media screen and (max-width: 720px){
+        :not(:first-child){
+            margin-left: 0px!important;
+        }
+
+        margin-top: 30px;
+    }
+
+    :not(:first-child){
+        margin-left: 70px;
+    }
+
+    & > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: relative;
+        width: 90px;
+        height: 90px;
+        margin-bottom: 10px;
+
+        & > :first-child{
+            position: absolute;
+            z-index: -100000;
+        }
+    }
+
+    & > span{
+        font-size: 1.1rem;
+    }
+
+    & > p{
+        text-align: center;
+
+        font-size: .9rem;
+    }
+
+    transition: .15s;
+    :hover{
+        box-shadow: 1px 1px 2px var(--shadow);
+    }
+`
+
+const iconsCSS = css`
+    width: 30px;
+    height: 30px;
+
+    color: white;
+`
+
+export const PracticalityIcon = styled(HourglassSplit)`
+    ${iconsCSS}
+`
+
+export const VisibilityIcon = styled(EyeFill)`
+    ${iconsCSS}
+`
+
+export const RateIcon = styled(StarFill)`
+    ${iconsCSS}
 `
