@@ -5,7 +5,7 @@ export const Container = styled.div`
 
     padding: 5px 40px;
 
-    & > .image-container{
+    & > .wrapper{
         display: flex;
         justify-content: space-between; 
         
@@ -14,7 +14,7 @@ export const Container = styled.div`
     }
 
     @media screen and (max-width: 550px){
-        & > .image-container{
+        & > .wrapper{
             flex-direction: column;
 
             & > *{

@@ -4,7 +4,7 @@ import {
     Formik,
 } from 'formik'
 
-import FormikField from '../../../components/FormikField'
+import FormikField from '../../FormikField'
 
 import {
     Form,

@@ -1,4 +1,8 @@
 import React,{useState,useEffect} from 'react'
+import { useRouter } from 'next/router'
+
+import getCookie from '../../../utils/cookies/getCookie'
+import { baseURL } from '../../../utils/baseURL'
 
 import TextArea from '../../TextArea'
 import ImagePicker from '../../ImagePicker'
@@ -6,8 +10,6 @@ import { Container, Wrapper } from './style'
 import {
     Title
 } from "../../FormComponents.style"
-import getCookie from '../../../native/cookies/getCookie'
-import { baseURL } from '../../../native/baseURL'
 
 function Form5(props) {
 
@@ -18,7 +20,8 @@ function Form5(props) {
 
     const [description, setDescription] = useState('')
     const [banner, setBanner] = useState(null)
-    
+
+    const router = useRouter()
 
     const handleChange = file => {
 
@@ -58,7 +61,7 @@ function Form5(props) {
                             ...props.salonDatas, 
                             bannerImgInBase64: banner.base64,
                             isAcceptPersonPhoneAsContact: false,
-                            description
+                            salonDescription: description
                         }})
                 })
     
@@ -66,7 +69,8 @@ function Form5(props) {
                     const salonResponseText = await salonRouteResponse.text()
                     props.onPopUpEvent("warningIcon", salonResponseText)
                 }else{
-                    const salonResponseJSON = await salonRouteResponse.json()
+                    props.onPopUpEvent("doneIcon", 'Seu salão foi registrado e está em análise!')
+                    setTimeout(() => router.push('/login'), 5000)
                 }
             }else{
                 props.onPopUpEvent("warningIcon", 'Banner ou/e Descrição inválido(s)')

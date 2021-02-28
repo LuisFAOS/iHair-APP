@@ -1,6 +1,6 @@
 import React,{useContext, useState} from 'react'
 
-import { baseURL } from '../../../native/baseURL'
+import { baseURL } from '../../../utils/baseURL'
 import AuthContext from '../../../AuthContext'
 
 import TextInput from '../../TextInput'

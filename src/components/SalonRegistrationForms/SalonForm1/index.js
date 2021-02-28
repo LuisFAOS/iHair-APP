@@ -15,7 +15,7 @@ import {
     Wrapper,
     Title
 } from "../../FormComponents.style"
-import { AdressContainer } from './style'
+import { AddressContainer } from './style'
 import validations from '../../../schemas/salon.schema'
 
 
@@ -28,12 +28,12 @@ function Form4(props) {
                 value: props.salonDatas.cnpj || '',
                 error: props.salonDatas.cnpj ? '' : 'CNPJ inválido.'
             },
-            cep: {
-                value: props.salonDatas.cep || '',
-                error: props.salonDatas.cep ? '' : 'CEP inválido.'
+            CEP: {
+                value: props.salonDatas.CEP || '',
+                error: props.salonDatas.CEP ? '' : 'CEP inválido.'
             }
         })
-    }, [props.salonDatas.cep, props.salonDatas.cnpj])
+    }, [props.salonDatas.CEP, props.salonDatas.cnpj])
 
     const [showErrors, setShowErrors] = useState(false)
 
@@ -42,18 +42,18 @@ function Form4(props) {
             value: '',
             error: 'CNPJ inválido'
         },
-        cep: {
+        CEP: {
             value: '',
             error: 'CEP inválido.'
         }
     })
 
     const handleSubmit = async (values, errors) => {   
-        await validationHandler(otherSalonDatas.cep.value, 'cep')
+        await validationHandler(otherSalonDatas.CEP.value, 'cep')
         
-        setShowErrors(!Object.keys(errors).length == 0 || otherSalonDatas.cep.error || otherSalonDatas.cnpj.error) 
+        setShowErrors(!Object.keys(errors).length == 0 || otherSalonDatas.CEP.error || otherSalonDatas.cnpj.error) 
         
-        if(Object.keys(errors).length == 0 && !otherSalonDatas.cep.error && !otherSalonDatas.cnpj.error)
+        if(Object.keys(errors).length == 0 && !otherSalonDatas.CEP.error && !otherSalonDatas.cnpj.error)
             props.nextPageHandler(values, "salon")
     }
 
@@ -71,7 +71,7 @@ function Form4(props) {
             }
         } catch (error) {
             const newState={...otherSalonDatas}
-            newState.cep.error = 'CEP inválido.'
+            newState.CEP.error = 'CEP inválido.'
             setOtherSalonDatas({...newState})
         }
     }
@@ -86,7 +86,7 @@ function Form4(props) {
 
     const {
         name,
-        adressNumber, 
+        addressNumber, 
         contactNumber, 
     } = props.salonDatas
 
@@ -94,7 +94,7 @@ function Form4(props) {
         <Formik 
             initialValues={{
                 name: name || '',
-                adressNumber: adressNumber || '', 
+                addressNumber: addressNumber || '', 
                 contactNumber: contactNumber || '', 
             }}  
             validationSchema={validations}
@@ -117,27 +117,27 @@ function Form4(props) {
                                 labelText="Nome"/>
                         </div>
                         <div className="form-group">
-                            <AdressContainer>
+                            <AddressContainer>
                                 <div>
                                     <FormikField 
-                                        name="adressNumber" 
-                                        inputValue={values.adressNumber}
-                                        ErrorMessage={errors.adressNumber}
+                                        name="addressNumber" 
+                                        inputValue={values.addressNumber}
+                                        ErrorMessage={errors.addressNumber}
                                         showErrors={showErrors}
                                         labelText="Nº do endereço"/>
                                 </div>
 
                                 <div>
                                     <TextInput 
-                                        name="cep" 
-                                        inputValue={otherSalonDatas.cep.value}
-                                        ErrorMessage={otherSalonDatas.cep.error}
+                                        name="CEP" 
+                                        inputValue={otherSalonDatas.CEP.value}
+                                        ErrorMessage={otherSalonDatas.CEP.error}
                                         changed={handleInputChange}
                                         blured={validationHandler}
                                         showErrors={showErrors}
                                         labelText="CEP"/>
                                 </div>
-                            </AdressContainer>
+                            </AddressContainer>
                         </div>
                     </Wrapper>
                     <Wrapper>
@@ -164,7 +164,7 @@ function Form4(props) {
                         id="btn-form4" 
                         onClick={() => handleSubmit({
                             ...values, 
-                            cep: otherSalonDatas.cep.value,
+                            CEP: otherSalonDatas.CEP.value,
                             cnpj: otherSalonDatas.cnpj.value, 
                         }, errors)}
                         type="button"></button>

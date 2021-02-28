@@ -10,7 +10,7 @@ import {
 } from "../../FormComponents.style"
 
 import ImagePicker from "../../ImagePicker"
-import { baseURL } from "../../../native/baseURL"
+import { baseURL } from "../../../utils/baseURL"
 
 function Form2(props){
 
@@ -66,7 +66,6 @@ function Form2(props){
                     const ownerResponseText = await ownerRouteResponse.text()
                     props.onPopUpEvent("warningIcon", ownerResponseText)
                 }else {
-                    const ownerResponseJSON = await ownerRouteResponse.json()
                     props.nextPageHandler()
                 }
             }else{
@@ -82,7 +81,7 @@ function Form2(props){
     return(
         <Container>
             <Title>Seus Dados: </Title>
-            <div className="image-container">
+            <div className="wrapper">
                 <ImagePicker 
                     image={images && images.profile}
                     labelText="Escolher foto de perfil" 

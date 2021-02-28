@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const AdressContainer = styled.div`
+export const AddressContainer = styled.div`
     display: flex;
 
     padding-right: 15px;
