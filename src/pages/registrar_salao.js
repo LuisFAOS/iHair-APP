@@ -1,19 +1,22 @@
 import React,{useState} from 'react';
 
-import getCookie from '../native/cookies/getCookie'
+import getCookie from '../utils/cookies/getCookie'
 
-import SalonOwnerTextDatasForm from '../components/SalonRegistrationForms/1.SalonOwnerTextDatas.form';
-import SalonOwnerImgsForm from '../components/SalonRegistrationForms/2.SalonOwnerImgs.form';
-import LoginForm from '../components/SalonRegistrationForms/3.Login.form';
-import SalonP1Form from '../components/SalonRegistrationForms/p1.Salon.form';
-import SalonLastStepsForm from '../components/SalonRegistrationForms/SalonLastSteps.form';
+import SalonOwnerForm1 from '../components/SalonRegistrationForms/SalonOwnerForm1';
+import SalonOwnerForm2 from '../components/SalonRegistrationForms/SalonOwnerForm2';
+import LoginForm from '../components/SalonRegistrationForms/LoginForm';
+import SalonForm1 from '../components/SalonRegistrationForms/SalonForm1';
+import SalonForm2 from '../components/SalonRegistrationForms/SalonForm2';
+import PopUp from '../components/PopUp';
+import Loading from '../components/Loading';
+import WithUnAuth from '../HOCs/WithUnAuth'
 
 import { 
     Container,
     InputSide,
     ProgressSide,
     FormBox,
-    Icon,
+    HeadImg,
     ProgressCircle,
     ProgressText,
     Footer,
@@ -23,9 +26,7 @@ import {
     CheckIcon,
     CompressedProgressBar,
  } from '../styles/registrar_salao.style'
-import PopUp from '../components/PopUp';
-import Loading from '../components/Loading';
- 
+
 
 function RegisterSalon() {
 
@@ -60,18 +61,18 @@ function RegisterSalon() {
 
     
     const Icons = [
-        <Icon src="/registerSalon/business.png"/>,
-        <Icon src="/registerSalon/add-files.png"/>,
-        <Icon src="/registerSalon/email-confirmation.png"/>,
-        <Icon src="/registerSalon/salon-1.png"/>,
-        <Icon src="/registerSalon/salon-2.1.png"/>,
+        <HeadImg src="/registerSalon/business.png"/>,
+        <HeadImg src="/registerSalon/add-files.png"/>,
+        <HeadImg src="/registerSalon/email-confirmation.png"/>,
+        <HeadImg src="/registerSalon/salon-1.png"/>,
+        <HeadImg src="/registerSalon/salon-2.1.png"/>,
     ]
 
     const Forms = [
-        <SalonOwnerTextDatasForm 
+        <SalonOwnerForm1 
             ownerDatas={ownerDatas}
             nextPageHandler={nextPageHandler}/>,
-        <SalonOwnerImgsForm
+        <SalonOwnerForm2
             ownerDatas={ownerDatas}
             onPopUpEvent={onPopUpEvent}
             setLoading={setLoading}
@@ -80,10 +81,10 @@ function RegisterSalon() {
             setLoading={setLoading}
             onPopUpEvent={onPopUpEvent}
             nextPageHandler={nextPageHandler}/>,
-        <SalonP1Form
+        <SalonForm1
             salonDatas={salonDatas}
             nextPageHandler={nextPageHandler}/>,
-        <SalonLastStepsForm
+        <SalonForm2
             setLoading={setLoading}
             onPopUpEvent={onPopUpEvent}
             salonDatas={salonDatas}
@@ -181,11 +182,11 @@ function RegisterSalon() {
                         </ProgressCircle>
                         <ProgressText>
                             <div>
-                                Enviar de imagens.
+                                Envio de imagens e cargo.
                             </div>
                             <div>
                                 Finalizando o cadastro do proprietário basta enviar
-                                algumas imagens.
+                                algumas imagens e seu cargo.
                             </div>
                         </ProgressText>
                     </ProgressBox>
@@ -212,7 +213,7 @@ function RegisterSalon() {
                                 Insira os dados do SALÃO.
                             </div>
                             <div>
-                                Os dados inseridos aqui servirá, também, para validação.
+                                Atenção, agora começará a inserção dos dados do salão, sendo esses bastante visiveis.
                             </div>
                         </ProgressText>
                     </ProgressBox>
@@ -235,4 +236,4 @@ function RegisterSalon() {
     );
 }
 
-export default RegisterSalon;
+export default WithUnAuth(RegisterSalon);

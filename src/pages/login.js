@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { baseURL } from '../native/baseURL'
+import { baseURL } from '../utils/baseURL'
 import AuthContext from '../AuthContext'
 
 import Link from 'next/link'
@@ -9,6 +9,7 @@ import TextInput from '../components/TextInput'
 import CheckBox from '../components/CheckBox'
 import PopUp from '../components/PopUp'
 import Loading from '../components/Loading'
+import WithUnAuth from '../HOCs/WithUnAuth'
 
 import {
     Container,
@@ -69,7 +70,7 @@ function Login(props) {
             }else{
                 const authDatas = await loginResponse.json()
                 signIn(authDatas)
-                await router.push('/home')
+                await router.push('/lista-saloes')
             }
         } catch (internalError) {
             console.error(internalError)
@@ -149,4 +150,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default WithUnAuth(Login)

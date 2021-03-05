@@ -10,6 +10,8 @@ import TextInput from "../components/TextInput"
 import PopUp from "../components/PopUp"
 import Loading from "../components/Loading"
 
+import WithUnAuth from '../HOCs/WithUnAuth'
+
 import {
     Container,
     InputSide,
@@ -24,10 +26,10 @@ import {
 } from '../styles/cadastrar_usuario.style'
 
 import validations from "../schemas/normalUser.schema"
-import { baseURL } from "../native/baseURL"
+import { baseURL } from "../utils/baseURL"
 import Link from "next/link"
 
-export default function SingUpNormalUser(){
+function SignUpNormalUser(){
 
     const [showErrors, setShowErrors] = useState(null)
     const [popUpDatas, setPopUpDatas] = useState(null)
@@ -39,21 +41,21 @@ export default function SingUpNormalUser(){
     })
 
     const handleSubmit = async (values, isValid) => {
-        if(!isValid || (!!CEP.error && CEP.value.length == 7)){
-            setShowErrors(true)
-            return
-        }else if(!isTermsAccept){
-            setShowErrors(true)
-            setPopUpDatas({
-                iconName: 'warningIcon',
-                message: 'Você tem que aceitar todos os termos para continuar.'
-            })
-            return
-        }
-
         setLoading(true)
         
         try {
+            if(!isValid || (!!CEP.error && CEP.value.length == 7)){
+                setShowErrors(true)
+                return
+            }else if(!isTermsAccept){
+                setShowErrors(true)
+                setPopUpDatas({
+                    iconName: 'warningIcon',
+                    message: 'Você tem que aceitar todos os termos para continuar.'
+                })
+                return
+            }
+
             const postUserResponse = await fetch(`${baseURL}/normal-user`,{
                 method: 'POST',
                 headers:{
@@ -203,3 +205,6 @@ export default function SingUpNormalUser(){
         </Container>
     )
 }
+
+
+export default WithUnAuth(SignUpNormalUser)
