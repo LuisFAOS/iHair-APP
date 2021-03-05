@@ -20,7 +20,7 @@ const withAuth = Component => {
             return LoadingContainer
         }
 
-        if(!isSigned && authDatas.client.permissionOf !== 'normalUser'){
+        if(!isSigned || (authDatas && authDatas.client.permissionOf !== 'normalUser')){
             router.push({
                 pathname: '/login',
                 query: {

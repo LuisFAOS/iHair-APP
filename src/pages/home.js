@@ -19,7 +19,9 @@ import {
     ButtonBox,
 } from '../styles/home.style'
 
-function Beneficios() {
+import WithUnAuth from '../HOCs/WithUnAuth'
+
+function Home() {
     return (
         <Container>
              <Apresentation>
@@ -112,4 +114,4 @@ function Beneficios() {
     )
 }
 
-export default Beneficios
+export default WithUnAuth(Home)
