@@ -17,6 +17,10 @@ export default createGlobalStyle `
         border: 0;
         background: none; font-family: 'Roboto', sans-serif;
         font-weight: 400;
+        
+        :focus{
+            outline: none;
+        }
     }
     html {
         background: var( --primary);
@@ -26,6 +30,7 @@ export default createGlobalStyle `
     --lightblue: #2C8ED6;
     --red: #DC3545;
     --shadow: #d7d7d7;
-    --whiteborder: #f5f5f5;
+    --whiteborder: #f1eeee;
+    --black: #273036;
   }
 `
