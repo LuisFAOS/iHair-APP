@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled, { css } from 'styled-components'
 import { BoxArrowInRight, Calendar2Event, Heart, PersonBadge, Star, X } from 'styled-icons/bootstrap'
 
@@ -34,6 +35,10 @@ export const Header = styled.div`
     padding: 5px 30px;
 
     border-bottom: 1px solid var(--whiteborder);
+
+    @media screen and (min-width: 900px){
+        padding-top: 20px;
+   } 
 `
 
 export const CloseButton = styled.button`
@@ -42,9 +47,7 @@ export const CloseButton = styled.button`
     color: gray;
     font-size: 1.5rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
 
     margin-top: 5px;
     margin-bottom: 30px;
@@ -52,6 +55,12 @@ export const CloseButton = styled.button`
     cursor: pointer;
 
     border: 1px solid var(--whiteborder);
+
+    @media screen and (max-width: 900px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   } 
 `
 
 export const CloseIcon = styled(X)`
@@ -64,7 +73,8 @@ export const Wrapper = styled.div`
     padding-bottom: 10px;
 `
 
-export const Option = styled.div`
+
+export const Option = styled.a`
     display: flex;
     align-items: center;
 
@@ -74,11 +84,14 @@ export const Option = styled.div`
     color: gray;
     font-size: 1.2rem;
 
+    outline: none;
     cursor: pointer;
     transition: .15s;
     :hover{
         color: #DC3545;
     }
+
+    ${props => props.isActive && css`color: #DC3545;`}
 `
 
 const iconsCSS = css`
