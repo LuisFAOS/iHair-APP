@@ -5,9 +5,10 @@ const validations = Yup.object().shape({
         .trim()
         .min(3, "Nome do salão muito curto.")
         .max(50, "Nome do salão muito longo.")
+        .matches('^[a-zA-Z0-9]+$','Nome inválido.')
         .required("Nome do salão é obrigatório."),
 
-    adressNumber: Yup.string("O número deve ser uma string.")
+    addressNumber: Yup.string("O número deve ser uma string.")
         .trim()
         .max(20, "Número muito longo.")
         .required("Número é obrigatório."),

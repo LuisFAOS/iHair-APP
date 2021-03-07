@@ -5,6 +5,7 @@ const validations = Yup.object().shape({
         .trim()
         .min(5, "Nome completo muito curto.")
         .max(100, "Nome completo muito longo.")
+        .matches('^[a-zA-Z0-9]+$','Nome completo inválido.')
         .required("Nome completo é obrigatório."),
         
     phone: Yup.string("O Tel/Cel deve ser uma string.")
