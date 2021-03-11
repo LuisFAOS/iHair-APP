@@ -33,10 +33,13 @@ export function AuthProvider({children}) {
                     })
                 }
             }catch(error){
-                const withAuthPages = ['/lista-saloes']
-                if(withAuthPages.includes(window.location.href)){
-                    router.push('/login')
-                }   
+                const withAuthPages = ['/lista-saloes','/perfil','/buscar']
+                withAuthPages.forEach(withAuthPage => {
+                    if(window.location.href.includes(withAuthPage)){
+                        router.push('/login')
+                    }  
+                })
+                 
             }
         })();
         
