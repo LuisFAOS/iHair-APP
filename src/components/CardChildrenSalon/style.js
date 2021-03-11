@@ -2,10 +2,6 @@ import styled from 'styled-components'
 import { StarFill } from 'styled-icons/bootstrap'
 
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
     padding-top: 10px;
 
     height: calc(100% - 20px);
@@ -15,6 +11,10 @@ export const Wrapper = styled.div`
     display: flex;
 
     font-size: .9rem;
+
+    :not(:first-child){
+        margin-top: 10px;
+    }
 
     & > ul{
         display: flex;

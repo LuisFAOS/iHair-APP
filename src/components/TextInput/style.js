@@ -5,7 +5,7 @@ export const Container = styled.div`
     position: relative;
     
     width: 90%;
-    height: 40px;
+    height: 38px;
     margin: 0px 15px;
 
     border: 1px solid gainsboro;
@@ -27,7 +27,7 @@ export const Container = styled.div`
             : 
         css` & > label {
                 color: #a8a8a8;
-                line-height: 35px;
+                line-height: 30px;
 
                 width: 100%;
 
@@ -89,7 +89,7 @@ export const HidePasswordIcon = styled(VisibilityOff)`${iconCSS}`
 
 export const PasswordIconContainer = styled.div`
     position: absolute;
-    top: 8px;
+    top: 7px;
     right: 15px;
 
     background-color: white;

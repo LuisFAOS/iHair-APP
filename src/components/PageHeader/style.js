@@ -56,6 +56,8 @@ export const Wrapper = styled.div`
 `
 
 export const LogoBox = styled.div`
+    cursor: pointer;
+    
     margin-right: 80px;
 `
 

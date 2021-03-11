@@ -43,7 +43,7 @@ export const TextDatas = styled.div`
 export const Title = styled.div`
     max-width: 100%;
 
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 500;
 
     white-space: nowrap;
