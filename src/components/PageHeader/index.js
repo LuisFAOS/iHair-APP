@@ -22,6 +22,7 @@ import {
     UserCompleteAddressBox,
     CloseIcon,
 } from './style'
+import Link from 'next/link'
 
 function PageHeader() {
 
@@ -29,34 +30,21 @@ function PageHeader() {
 
     const [showProfileMenu, setShowProfileMenu] = useState(false)
     const [showUserCompleteAddress, setShowUserCompleteAddress] = useState(false)
-    const [userCompleteAddress, setUserCompleteAddress] = useState(null)
-
-    async function getUserCompleteAddress(){
-        try {
-            if(data && !userCompleteAddress){
-                const response = await cepPromise(data.CEP)
-                setUserCompleteAddress({...response})
-            }
-            return
-        } catch (error) {
-            setUserCompleteAddress('erro ao pegar seu endereço')
-        }
-    }
-
-    getUserCompleteAddress()
 
     return (
         <>
             <Container>
                 <Wrapper>
                     <LogoBox className="logo">
-                        <Image
-                            height={91/2.2}
-                            width={78/2.2}
-                            src="/logo-red.png"
-                        /> 
+                        <Link href="/lista-saloes">
+                            <Image
+                                height={91/2.2}
+                                width={78/2.2}
+                                src="/logo-red.png"
+                            /> 
+                        </Link>
                     </LogoBox>
-                    <SearchInput id="search-salons" placeholder="Busque por salão"/>
+                    <SearchInput id="search-salons" placeholder="Busque por serviço e salão"/>
                 </Wrapper>
                 <LocalizationContainer 
                     onClick={() => setShowUserCompleteAddress(!showUserCompleteAddress)}
@@ -67,7 +55,7 @@ function PageHeader() {
                     <div>
                         <LocalizationIcon/>
                         <div className="user-local">
-                            {data && userCompleteAddress ? `${userCompleteAddress.street} - ${userCompleteAddress.city}` : 'Carregando...'}
+                            {data ? `${data.userCompleteAddress.street} - ${data.userCompleteAddress.city}`: 'Carregando...'}
                         </div>
                         <ArrowDownIcon/>
                     </div>
@@ -76,7 +64,7 @@ function PageHeader() {
                     onClick={() => setShowProfileMenu(!showProfileMenu)} 
                     className="user-menu"/>
             </Container>
-            {showProfileMenu && <ProfileMenu userName={data.name} closeProfileMenu={() => setShowProfileMenu(false)}/>}
+            {showProfileMenu && <ProfileMenu userName={data ? data.user.name : '...'} showMe={() => setShowProfileMenu(false)}/>}
             {showUserCompleteAddress && (
                 <UserCompleteAddressBox>
                     <div onClick={() => setShowUserCompleteAddress(false)}>
@@ -89,7 +77,7 @@ function PageHeader() {
                             src="/header/my-local.png"
                         />
                     </div>
-                    {userCompleteAddress ? `${userCompleteAddress.street} - ${userCompleteAddress.neighborhood} - ${userCompleteAddress.city} - ${userCompleteAddress.state}` : 'Carregando...'}
+                    {data ? `${data.userCompleteAddress.street} - ${data.userCompleteAddress.neighborhood} - ${data.userCompleteAddress.city} - ${data.userCompleteAddress.state}` : 'Carregando...'}
                 </UserCompleteAddressBox>
             )}
         </>
