@@ -25,7 +25,7 @@ import {
     ProgressBox,
     CheckIcon,
     CompressedProgressBar,
- } from '../styles/registrar_salao.style'
+ } from '../styles/registrar-salao.style'
 
 
 function RegisterSalon() {

@@ -23,7 +23,7 @@ import {
     ButtonBox,
     KnowMoreButton,
     CheckBoxContainer,
-} from '../styles/cadastrar_usuario.style'
+} from '../styles/cadastrar-usuario.style'
 
 import validations from "../schemas/normalUser.schema"
 import { baseURL } from "../utils/baseURL"

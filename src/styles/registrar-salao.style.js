@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Check } from 'styled-icons/bootstrap';
+
+import Image from 'next/image'
 import { Button } from '../components/Button.style';
 
 export const mediaQuery1100 = css`
@@ -58,7 +60,7 @@ export const ProgressSide = styled.div`
     
 `
 
-export const Icon = styled.img`
+export const HeadImg = styled.img`
     margin: 20px 0px;
     margin-bottom: 20px;
     height: 180px;
@@ -69,10 +71,12 @@ export const FormBox = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    
+    overflow-x: hidden;
 
     width: 750px;
     max-width: 97%;
-    height: 525px;
+    height: 540px;
     border-radius: 4px;
     border: 1px solid var(--whiteborder);
     
@@ -81,7 +85,8 @@ export const FormBox = styled.div`
     background-color: #ffffff;
 
     @media screen and (max-width: 1100px){
-        margin: auto;
+        margin: 0px auto;
+        height: 570px;
     }
 
     @media screen and (max-width: 550px){
@@ -156,7 +161,7 @@ export const Footer = styled.div`
 
     width: 100%;
 
-    padding: 10px 60px 30px 60px;
+    padding: 10px 60px 20px 60px;
 
     @media screen and (max-width: 500px){
         padding: 25px 20px; 
