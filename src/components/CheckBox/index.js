@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
 
 import {
+    Check,
+    CheckFill,
     Container
 } from './style'
 
-function CheckBox({labelText, changed, value}){
+function CheckBox({labelText, changed}){
+
+    const [isCheck, setIsCheck] = useState(false)
+
     return(
-        <Container>
-            <input 
-                onChange={event => changed(event.target.checked)}
-                value={value}
-                type="checkbox" 
-                id="check"/>
+        <Container onClick={() => {
+            setIsCheck(!isCheck)
+            changed(isCheck)
+        }}>
+            {isCheck ? <CheckFill/> : <Check/>}
             <label htmlFor="check">
                 {labelText} 
             </label>
@@ -22,9 +26,8 @@ function CheckBox({labelText, changed, value}){
 }
 
 CheckBox.propTypes={
-    labelText: PropTypes.string,
-    changed: PropTypes.func,
-    value: PropTypes.bool
+    labelText: PropTypes.string.isRequired,
+    changed: PropTypes.func.isRequired,
 }
 
 export default CheckBox

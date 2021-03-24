@@ -1,3 +1,4 @@
+import { CheckSquareFill, Square } from '@styled-icons/bootstrap'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -15,9 +16,24 @@ export const Container = styled.div`
     }
 
     & > label{
-        font-size: 14px;
+        font-size: 16px;
+        font-weight: 300;
         
         margin-left: 5px;
         cursor: pointer;
     }
+`
+
+export const CheckFill = styled(CheckSquareFill)`
+    color: var(--red);
+
+    width: 20px;
+    height: 20px;
+`
+
+export const Check = styled(Square)`
+    color: gray;
+
+    width: 20px;
+    height: 20px;
 `
