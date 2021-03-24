@@ -1,3 +1,4 @@
+import { Wallet } from '@styled-icons/boxicons-solid'
 import styled, { css } from 'styled-components'
 import { EyeFill, HourglassSplit, StarFill } from 'styled-icons/bootstrap'
 import { Button } from '../components/Button.style'
@@ -26,7 +27,7 @@ export const Apresentation = styled.div`
     }
 
     @media screen and (max-width: 500px){
-        padding: 0px 20px;
+        padding: 0px 40px;
         padding-top: 40px;
     }
 `
@@ -109,7 +110,29 @@ export const BenefitsList = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media screen and (max-width: 690px){
+    & > div{
+        display: flex;
+        justify-content: space-around;
+
+        @media screen and (max-width: 960px){
+            margin-top: 40px;
+
+            & > :not(:first-child){
+                margin: 0px;
+                margin-left: 40px;
+            }
+        }
+
+        @media screen and (max-width: 520px){
+            flex-direction: column;
+            & > :not(:first-child){
+                margin: 0px;
+                margin-top: 40px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 960px){
         flex-direction: column;
     }
 `
@@ -125,16 +148,8 @@ export const BenefitCard = styled.div`
 
     border: 1px solid var(--whiteborder);
 
-    @media screen and (max-width: 720px){
-        :not(:first-child){
-            margin-left: 0px!important;
-        }
-
-        margin-top: 30px;
-    }
-
     :not(:first-child){
-        margin-left: 70px;
+        margin: 0px 40px;
     }
 
     & > div{
@@ -181,6 +196,10 @@ export const PracticalityIcon = styled(HourglassSplit)`
 `
 
 export const VisibilityIcon = styled(EyeFill)`
+    ${iconsCSS}
+`
+
+export const WalletIcon = styled(Wallet)`
     ${iconsCSS}
 `
 

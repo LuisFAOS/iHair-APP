@@ -2,8 +2,9 @@ import React from 'react'
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Button } from '../components/Button.style'
 
+import Head from '../components/Head'
+import { Button } from '../components/Button.style'
 import {
     Container,
     Apresentation,
@@ -17,6 +18,7 @@ import {
     VisibilityIcon,
     RateIcon,
     ButtonBox,
+    WalletIcon,
 } from '../styles/home.style'
 
 import WithUnAuth from '../HOCs/WithUnAuth'
@@ -24,6 +26,7 @@ import WithUnAuth from '../HOCs/WithUnAuth'
 function Home() {
     return (
         <Container>
+            <Head title="iHair | home"/>
              <Apresentation>
                 <ImageBox>
                     <Image
@@ -34,8 +37,7 @@ function Home() {
                 </ImageBox>
                 <ProjectDescription>
                     <p>
-                            iHair está aqui para facilitar a conexão entre
-                        os salões e os clientes.
+                        iHair facilita a conexão salões-cliente
                     </p> 
                     <p>
                         Tais "Salões" nada mais são que
@@ -55,55 +57,73 @@ function Home() {
             </svg>
              <SalonRegistrationBenefits>
                  <p>Por que registrar meu salão?</p>
-                 <BenefitsList>
-                     <BenefitCard>
-                        <span>
-                            Praticidade
-                        </span>
-                        <div>
-                            <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
-                            </svg>
-                            <PracticalityIcon/>
-                        </div>
-                        <p>
-                            Será mais fácil a gerenciamento dos horários, pois
-                            ajudaremos com isso.
-                        </p>
-                     </BenefitCard>
-                     <BenefitCard>
-                        <span>
-                            Visibilidade
-                        </span>
-                        <div>
-                            <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
-                            </svg>
-                            <VisibilityIcon/>
-                        </div>
-                        <p>
-                            Com um bom serviço pregado, você ficará entre os 
-                            melhores de sua região.
-                        </p>
-                     </BenefitCard>
-                     <BenefitCard>
-                        <span>
-                            Críticas
-                        </span>
-                        <div>
-                            <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
-                            </svg>
-                            <RateIcon/>
-                        </div>
-                        <p>
-                            Receba criticas de maneira única e geral para saber
-                            no que deve melhorar e continuar aprimorando.
-                        </p>
-                     </BenefitCard>
+                 <BenefitsList className="Wrapper">
+                     <div>
+                        <BenefitCard>
+                            <span>
+                                Praticidade
+                            </span>
+                            <div>
+                                <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                                </svg>
+                                <PracticalityIcon/>
+                            </div>
+                            <p>
+                                Será mais fácil a gerenciamento dos horários, pois
+                                ajudaremos com isso.
+                            </p>
+                        </BenefitCard>
+                        <BenefitCard>
+                            <span>
+                                Visibilidade
+                            </span>
+                            <div>
+                                <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                                </svg>
+                                <VisibilityIcon/>
+                            </div>
+                            <p>
+                                Com um bom serviço pregado, você ficará entre os 
+                                melhores de sua região.
+                            </p>
+                        </BenefitCard>
+                     </div>
+                     <div>
+                        <BenefitCard>
+                            <span>
+                                Críticas
+                            </span>
+                            <div>
+                                <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                                </svg>
+                                <RateIcon/>
+                            </div>
+                            <p>
+                                Receba criticas e saiba
+                                no que deve melhorar e continuar aprimorando.
+                            </p>
+                        </BenefitCard>
+                        <BenefitCard>
+                            <span>
+                                Custos
+                            </span>
+                            <div>
+                                <svg viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#DC3545" d="M35.8,-45.1C48.2,-40.3,61.4,-32.2,67.3,-20.4C73.3,-8.5,72,7.3,64.2,17.5C56.3,27.8,41.7,32.6,29.9,43.9C18.1,55.3,9.1,73.1,-2.8,76.9C-14.6,80.7,-29.2,70.5,-38.6,58.4C-48.1,46.3,-52.4,32.4,-52.5,19.9C-52.6,7.5,-48.4,-3.4,-42.5,-11.4C-36.6,-19.4,-29,-24.5,-21.7,-30.9C-14.3,-37.4,-7.1,-45.3,2.3,-48.4C11.7,-51.5,23.4,-49.9,35.8,-45.1Z" transform="translate(70 70)" />
+                                </svg>
+                                <WalletIcon/>
+                            </div>
+                            <p>
+                                O preço de todos esses beneficios é somente R$ 10,00 mensais, aproveite!
+                            </p>
+                        </BenefitCard>
+                     </div>
                  </BenefitsList>
                  <ButtonBox>
-                    <Link href="registrar_salao">
+                    <Link href="registrar-salao">
                         <Button>
                             Registrar meu salão!
                         </Button>
