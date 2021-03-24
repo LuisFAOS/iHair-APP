@@ -1,9 +1,7 @@
 import styled from "styled-components"
-import { Upload } from "styled-icons/bootstrap"
+import { PlusCircleFill, Upload } from "styled-icons/bootstrap"
 
 export const ImagePickerBox = styled.div`
-    margin-top: 10px;
-
     display: flex;
     justify-content: space-around;
 
@@ -12,12 +10,14 @@ export const ImagePickerBox = styled.div`
     }
 
     & > label{
+        position: relative;
+
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: center;
         
-        width: 210px;
-        height: 60px;
+        width: 110px;
+        height: 130px;
         padding: 10px;
 
         cursor: pointer;
@@ -29,18 +29,29 @@ export const ImagePickerBox = styled.div`
 
         transition: .2s;
 
-        & > :first-child{
-            width: 200px;
+        & > p{
+            position: absolute;
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
 
+            font-size: .7rem;
+            color: white;
+            padding: 6px;
+
+            display: flex;
+            align-items: center;
             text-align: center;
-            line-height: 16px;
-            padding: 0px 8px;
-            overflow: hidden;
-            text-overflow: ellipsis;
+
+            background-color: rgba(0,0,0,0.6);
         }
 
         &:hover{
             border: 2px dashed #e4e3e3;
+
+            & > p{
+                color: #e4e3e3;
+            }
         }
     }
 `
@@ -55,17 +66,15 @@ export const Container = styled.div`
 `
 
 export const Image = styled.img`
-    margin-top: 10px;
-
-    max-width: 100px;
-    max-height: 40px;
+    max-width: 80px;
+    max-height: 80px;
 `
 
-export const UploadIcon = styled(Upload)`
-    color: gray;
+export const PlusCircleIcon = styled(PlusCircleFill)`
+    color: gainsboro;
 
-    width: 16px;
-    height: 16px;
-    margin-top: 3px;
+    width: 80px;
+    height: 80px; 
+
 `
 
