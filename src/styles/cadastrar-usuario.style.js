@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { KeyboardArrowLeft } from "styled-icons/material"
 
 import { Button } from "../components/Button.style"
 
@@ -8,44 +9,42 @@ export const Container = styled.div`
 
     display: flex;
 
-    @media screen and (max-width: 1100px){
-        & > :first-child{
-            width: 32%;
-        }
-        & > :not(:first-child){
-            width: 67%;
-        }
-    }
-
-    @media screen and (max-width: 1100px){
-        & > :first-child{
-            display: none;
-        }
-        & > :not(:first-child){
-            width: 100%;
-        }
-    }
 `
 
-export const InputSide = styled.div`
-    width: 60%;
+export const BackPageIcon = styled(KeyboardArrowLeft)`
+    width: 20px;
+    height: 20px;
+`
+
+export const InputSide = styled.section`
+    width: 57%;
     height: 100%;
 
     display: flex;
     flex-direction: column; 
     align-items: center; 
     justify-content: center;
+
+    @media screen and (max-width: 1100px){
+        width: 100%;
+    }
 `
 
-export const FormTitle = styled.div`
+export const FormTitle = styled.h1`
     margin-bottom: 30px;
 
     text-align: center;
     font-size: 2.3rem;
     font-weight: 600;
+
+    @media screen and (max-width: 410px){
+        font-size: 1.9rem;
+    }
 `
 
 export const FormBox = styled.div`
+    position: relative;
+
     width: 670px;
     max-width: calc(100% - 40px);
     margin: 0px 20px;
@@ -88,11 +87,14 @@ export const ButtonBox = styled.div`
     margin-top: 30px;
 `
 
-export const ApresentationSide = styled.div`
-    width: 40%;
+export const PresentationSide = styled.section`
+    width: 43%;
     height: 100%;
 
+    border-radius: 0 50% 50% 0;
+
     position: relative;
+    padding-right: 10px;
 
     background-color: var(--red);
 
@@ -101,7 +103,7 @@ export const ApresentationSide = styled.div`
     align-items: center;
     justify-content: center;
 
-    & > div#logo{
+    & > figure#logo{
         & > img{
             width: 45px;
             height: 53px;
@@ -110,27 +112,99 @@ export const ApresentationSide = styled.div`
         }
     }
 
-    & > div#apresentation-title{
+    & > h1#presentation-title{
         color: white;
         font-size: 2.3rem;
         font-weight: 600;
     }
 
-    & > div#apresentation-description{
+    & > p#presentation-description{
         color: white;
         text-align: center;
         padding: 20px;
 
-        margin: 10px 0px;
+        margin: 10px;
     }
 
+    @media screen and (max-width: 1100px){
+        display: none;
+    }
 `
 
-export const BackPageButton = styled.div`
+export const BackgroundCircle = styled.div`
     position: absolute;
 
+    background-color: var(--red);
+    
+    ${props => props.isStaticSize ? css`
+        display: block;        
+
+        width: 75px;
+        height: 85px;
+
+        right: 0px;
+        bottom: 0px;
+        
+        border-radius: 100% 0 0 0;` 
+    :
+    css`
+        width: 280px;
+        height: 310px;
+
+        display: none;
+        
+        left: 0px;
+        top: 0px;
+        
+        z-index: 11;        
+
+        border-radius: 0 0 105% 0;
+        
+        @media screen and (max-width: 1100px){
+            display: block; 
+        }
+    
+        @media screen and (max-width: 975px){
+            width: 210px;
+            height: 240px;
+        }    
+
+        @media screen and (max-width: 745px){
+            width: 170px;
+            height: 200px;
+        }
+
+        @media screen and (max-width: 605px){
+            width: 140px;
+            height: 170px;
+        }
+
+        @media screen and (max-width: 520px){
+            width: 100px;
+            height: 130px;
+        }
+    `}
+`
+
+export const BackPageButton = styled.span`
+    position: absolute;
+
+    display: flex;
+    justify-content: center;    
+
     top: 8px;
-    left: 15px;
+    left: 25px;
+
+    z-index: 12;
+
+    color: white;
+    & > a {
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 520px){
+        left: 10px;
+    }
 `
 
 export const KnowMoreButton = styled(Button)`

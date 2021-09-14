@@ -5,7 +5,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
 
+    width: max-content;    
 
+    cursor: pointer;
+    
     margin-left: 15px;
 
     & > input{
@@ -16,7 +19,7 @@ export const Container = styled.div`
     }
 
     & > label{
-        font-size: 16px;
+        font-size: .9rem;
         font-weight: 300;
         
         margin-left: 5px;
@@ -26,14 +29,14 @@ export const Container = styled.div`
 
 export const CheckFill = styled(CheckSquareFill)`
     color: var(--red);
-
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
 `
 
 export const Check = styled(Square)`
     color: gray;
-
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
 `

@@ -1,24 +1,29 @@
-import React, { useState } from "react"
+import React, { useState, useCallback, useEffect } from "react"
 
 import cepPromise from "cep-promise"
 import {Formik} from "formik"
 
+import Head from '../components/Head'
 import CheckBox from "../components/CheckBox"
-import { Form, Wrapper } from "../components/FormComponents.style"
-import FormikField from "../components/FormikField"
-import TextInput from "../components/TextInput"
+import { Form, WrapperInputs } from "../components/FormComponents.style"
+import FormikField from "../components/Fields/Formik"
+import TextInput from "../components/Fields/Text"
 import PopUp from "../components/PopUp"
-import Loading from "../components/Loading"
+import Spinner from "../components/Spinner"
+import Link from "next/link"
 
-import WithUnAuth from '../HOCs/WithUnAuth'
+import HandleUnAuthPage from '../utils/pagesAuthHandlers/pageUnAuth.handler'
+import { baseURL } from "../utils/baseURL"
 
 import {
     Container,
     InputSide,
     BackPageButton,
+    BackPageIcon,
+    BackgroundCircle,
     FormTitle,
     FormBox,
-    ApresentationSide,
+    PresentationSide,
     SignUpButton,
     ButtonBox,
     KnowMoreButton,
@@ -26,108 +31,95 @@ import {
 } from '../styles/cadastrar-usuario.style'
 
 import validations from "../schemas/normalUser.schema"
-import { baseURL } from "../utils/baseURL"
-import Link from "next/link"
+
+import { useHTTP } from '../hooks'
 
 function SignUpNormalUser(){
 
-    const [showErrors, setShowErrors] = useState(null)
-    const [popUpDatas, setPopUpDatas] = useState(null)
+    const [isErrorsVisible, setErrorsVisibility] = useState(false)
+    const [popUpProps, setPopUpProps] = useState(null)
     const [isTermsAccept, setIsTermsAccept] = useState(false)
-    const [isLoading, setLoading] = useState(false)
     const [CEP, setCEP] = useState({
         value: '',
-        error: 'CEP inválido.'
+        error: ''
     })
 
+    const [isLoading, error, sendRequest] = useHTTP()
+
+    const { message, status, amount } = error
+    useEffect(() => {
+        if(message && amount > 0) setPopUpProps({type: 'warning', message})
+    }, [amount])
+    
     const handleSubmit = async (values, isValid) => {
-        setLoading(true)
-        
-        try {
-            if(!isValid || (!!CEP.error && CEP.value.length == 7)){
-                setShowErrors(true)
-                return
-            }else if(!isTermsAccept){
-                setShowErrors(true)
-                setPopUpDatas({
-                    iconName: 'warningIcon',
-                    message: 'Você tem que aceitar todos os termos para continuar.'
-                })
-                return
-            }
-
-            const postUserResponse = await fetch(`${baseURL}/normal-user`,{
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json', 
-                },
-                body: JSON.stringify({
-                    ...values,
-                    CEP: CEP.value
-                })
-            })
-
-            if(postUserResponse.status >= 400 && postUserResponse.status <= 499){
-                const error = await postUserResponse.text()
-                setPopUpDatas({
-                    iconName: 'warningIcon',
-                    message: error
-                })
-            }else{
-                setPopUpDatas({
-                    iconName: 'doneIcon',
-                    message: 'Cadastrado com sucesso, agora vá até seu email e confirme-o.'
-                })
-            }
-        } catch (internalError) {
-            console.error(internalError)
-            setPopUpDatas({
-                iconName: 'warningIcon',
-                message: 'Erro interno. Por favor, aguarde.'
-            })
-        }
-        setLoading(false)
+        await handleCEPvalidator()
+        if(!isValid || (!!CEP.error && CEP.value.length == 7)){
+            setErrorsVisibility(true)            
+        }else if(!isTermsAccept){
+            setErrorsVisibility(true)
+            setPopUpProps({
+                type: 'warning',
+                message: 'Você tem que aceitar todos os termos para continuar.'
+            })        
+        }else{
+            await sendRequest({entity: 'normal-user', body: {...values, CEP: CEP.value}}, 
+                (data) => setPopUpProps({
+                    type: 'done',
+                    message: 'Cadastrado com sucesso! Agora basta confirmar seu email'
+            }))
+        }   
     }
 
-    const handleCEPvalidator = async () => {
+    const handleCEPvalidator = useCallback(async () => {
         try {
             await cepPromise(CEP.value)
+            setCEP((prevCEPstate) => {
+                return {...prevCEPstate, error: ''}
+            })
         } catch (error) {
-            setCEP({...CEP, error: 'CEP inválido.'})
+            setCEP((prevCEPstate) => {
+                return {...prevCEPstate, error: 'CEP inválido.'}
+            })
         }
-    }
+    }, [CEP.value])
 
 
     return (
         <Container>
-            {
-                popUpDatas &&
+            <Head title="iHair | cadastrar-usuário"/>
+            <BackPageButton>
+                <BackPageIcon/>
+                    <Link href="/login">
+                        Login
+                    </Link>
+                </BackPageButton>
+            <BackgroundCircle/>
+           {
+                popUpProps &&
                 <PopUp
-                    setPopUpDatas={setPopUpDatas}
-                    iconName={popUpDatas.iconName}
-                    message={popUpDatas.message}   
+                    setMyProps={setPopUpProps}
+                    type={popUpProps.type}
+                    message={popUpProps.message}   
                 />
             }
-            <ApresentationSide>
-                <div id="logo">
+            <PresentationSide>
+                <figure id="logo">
                     <img src="/logo.png"/>
-                </div>
-                <div id="apresentation-title">
-                    Olá, Bem Vindo!
-                </div>
-                <div id="apresentation-description">
+                </figure>
+                <h1 id="presentation-title">
+                        Olá! Bem Vindo!
+                </h1>
+                <p id="presentation-description">
                     Se voce está aqui é porque, provavelmente, esteja interessado em utilizar
                     nosso site! Caso queira cadastrar seu salão, clique no botão abaixo.                
-                </div>
-                <Link href="/beneficios">
+                </p>
+                <Link href="/">
                     <KnowMoreButton>
                         SAIBA MAIS
                     </KnowMoreButton>
                 </Link>
-            </ApresentationSide>
+            </PresentationSide>
             <InputSide>
-                <BackPageButton/>
-
                 <FormBox>
                     <FormTitle>
                         Crie sua conta
@@ -141,51 +133,58 @@ function SignUpNormalUser(){
                             errors,
                             touched,
                             isValid
-                            /* and other goodies */
                         }) => (
                             <Form>
-                                <Wrapper>
-                                    <div className="form-group">
+                                <WrapperInputs>
+                                    <div className="input-content-box">
                                         <FormikField 
                                             name="email" 
                                             inputValue={values.email}
                                             ErrorMessage={errors.email}
-                                            showErrors={showErrors}
+                                            isErrorsVisible={isErrorsVisible}
                                             labelText="Email"/>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="input-content-box">
                                         <FormikField 
                                             name="password" 
                                             inputValue={values.password}
                                             ErrorMessage={errors.password}
-                                            showErrors={showErrors}
+                                            isErrorsVisible={isErrorsVisible}
                                             labelText="Senha"
-                                            isPassword/>
+                                            isPasswordInput/>
                                     </div>
-                                </Wrapper>
-                                <Wrapper>
-                                    <div className="form-group">
+                                </WrapperInputs>
+                                <WrapperInputs>
+                                    <div className="input-content-box">
                                         <FormikField   
                                             name="name" 
                                             inputValue={values.name}
                                             ErrorMessage={errors.name}
-                                            showErrors={showErrors}
+                                            isErrorsVisible={isErrorsVisible}
                                             labelText="Nome"/>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="input-content-box">
                                         <TextInput 
                                             name="CEP" 
                                             inputValue={CEP.value}
                                             ErrorMessage={CEP.error}
-                                            blured={handleCEPvalidator}
+                                            blured={() => {
+                                                const CEPvalueTrimmedLength = CEP.value.trim().length
+                                                if(CEPvalueTrimmedLength > 7 && CEPvalueTrimmedLength < 10) handleCEPvalidator()
+                                                else {
+                                                    setCEP((prevCEPstate) => {
+                                                        return {...prevCEPstate, error: 'CEP inválido.'}
+                                                    })
+                                                }
+                                            }}
                                             changed={value => setCEP({value, error: ''})}
-                                            showErrors={showErrors}
+                                            isErrorsVisible={isErrorsVisible}
                                             labelText="CEP"/>
                                     </div>
-                                </Wrapper>
+                                </WrapperInputs>
                                 <CheckBoxContainer>
                                     <CheckBox
-                                        changed={setIsTermsAccept}
+                                        clicked={() => setIsTermsAccept(!isTermsAccept)}
                                         value={isTermsAccept}
                                         labelText="Aceito todos os termos."
                                     />
@@ -194,12 +193,14 @@ function SignUpNormalUser(){
                                     <SignUpButton 
                                         onClick={() => handleSubmit(values, isValid)}
                                         type="button">
-                                        {isLoading ? <Loading size="small"/> : "Cadastrar"}
+                                        {isLoading ? <Spinner size="small"/> : "Cadastrar"}
                                     </SignUpButton>
                                 </ButtonBox>
                             </Form>
                         )}
                     </Formik>
+                    <BackgroundCircle 
+                        isStaticSize/>
                 </FormBox>
             </InputSide>
         </Container>
@@ -207,4 +208,12 @@ function SignUpNormalUser(){
 }
 
 
-export default WithUnAuth(SignUpNormalUser)
+export async function getServerSideProps(ctx){
+    const possibleRedirect = HandleUnAuthPage(ctx)
+
+    if(possibleRedirect) return possibleRedirect
+
+    return {props:{}}
+}
+
+export default SignUpNormalUser

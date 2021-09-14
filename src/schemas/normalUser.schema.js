@@ -5,7 +5,7 @@ const validations = Yup.object().shape({
         .trim()
         .min(5, "Nome muito curto.")
         .max(100, "Nome muito longo.")
-        .matches('^[a-zA-Z0-9]+$','Nome inválido.')
+        .matches('^[a-zA-ZàèìòùáéíóúâêîôûãõÀÈÌÒÙÁÉÍÓÚÂÊÎÔÛÃÕ ]+$','Nome inválido.')
         .required("Nome é obrigatório."),
 
     email: Yup.string("O email deve ser do tipo string.")

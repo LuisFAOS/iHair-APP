@@ -53,7 +53,7 @@ export const LogoImg = styled.img`
     height: 48px;
 `
 
-export const Header = styled.div`
+export const Title = styled.p`
     text-align: center;
     font-size: 1.8rem;
 
@@ -71,6 +71,9 @@ export const Form = styled.div`
 export const ForgotPasswordWrapper = styled.div`
     display: flex;
     justify-content: center;
+    
+    font-size: .95rem;
+    font-weight: 300;
 
     margin-top: 25px;
 `

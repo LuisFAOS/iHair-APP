@@ -16,8 +16,8 @@ export const ImagePickerBox = styled.div`
         align-items: center;
         justify-content: center;
         
-        width: 110px;
-        height: 130px;
+        width: 95px;
+        height: 125px;
         padding: 10px;
 
         cursor: pointer;
@@ -31,8 +31,8 @@ export const ImagePickerBox = styled.div`
 
         & > p{
             position: absolute;
-            width: 78px;
-            height: 78px;
+            width: 73px;
+            height: 73px;
             border-radius: 50%;
 
             font-size: .7rem;
@@ -66,15 +66,17 @@ export const Container = styled.div`
 `
 
 export const Image = styled.img`
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 75px;
+    max-height: 75px;
+        
+    border-radius: 50%;
 `
 
 export const PlusCircleIcon = styled(PlusCircleFill)`
     color: gainsboro;
 
-    width: 80px;
-    height: 80px; 
+    width: 75px;
+    height: 75px; 
 
 `
 

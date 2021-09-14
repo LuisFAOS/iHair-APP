@@ -17,7 +17,7 @@ import Link from 'next/link'
 
 function ButtonBar(props) {
 
-    const {data, error} = useSWR(`${baseURL}/normal-user/listDatas`, fetcher)
+    const {data, error} = useSWR(`${baseURL}/normal-user`, fetcher)
 
     const [currentPageIndice, setCurrentPageIndice] = useState(0)
     const [lastPageIndice, setLastPageIndice] = useState(0)
@@ -55,7 +55,7 @@ function ButtonBar(props) {
                     <span className="noClose">Perfil</span>
                 </ButtonPage>
             </Container>
-            {showProfileMenu && <ProfileMenu userName={data ? data.userDatasFromDB.name : ''} showMe={goToProfile => {
+            {showProfileMenu && <ProfileMenu userName={data ? data.user.name : ''} showMe={goToProfile => {
                 onChangePage(goToProfile ? 2 : lastPageIndice, false)
             }}/>}
         </>

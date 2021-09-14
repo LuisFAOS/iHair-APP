@@ -4,61 +4,66 @@ import PropTypes from 'prop-types'
 
 import {
     Container,
-    ClosePopUp,
-    TextWrapper,
-    Header,
+    ClosePopUpBox,
     Description,
     CloseIcon,
-    WarningIcon,
-    DoneIcon,
+    WrapperButtons,     
+    YesButton,
+    NoButton,
 } from './style'
 
-function PopUp(props) {
+function PopUp({setPopUpProps, message, type, funcAfterConfirmation}) {
 
     let timeToClose;
 
     const [isOpen, setIsOpen] = useState(true)
 
     useEffect(() => {
-        timeToClose = setTimeout(() => {
-            props.setPopUpDatas(null)
-            setIsOpen(false)
-        }, 6000)
-            
-        return () => clearTimeout(timeToClose);
+        if(type !== 'question'){    
+            timeToClose = setTimeout(() => {
+                setPopUpProps(null)
+                setIsOpen(false)
+            }, 6000)
+
+            return () => clearTimeout(timeToClose);
+        }
     }, [])
 
-    const icons = {
-        doneIcon: <DoneIcon/>,
-        warningIcon: <WarningIcon/>,
-    }
-
     return isOpen && (
-                <Container>
-                    <ClosePopUp>
-                        <CloseIcon
-                            onClick={() => {
-                                clearTimeout(timeToClose)
-                                props.setPopUpDatas(null)
-                            }}
-                        />
-                    </ClosePopUp>
-                    <TextWrapper>
-                        <Header>
-                            {icons[props.iconName]}
-                        </Header>
-                        <Description>
-                            {props.message}
-                        </Description>
-                    </TextWrapper>
+                <Container type={type}>
+                    { type !=='question' && (
+                        <ClosePopUpBox>
+                            <CloseIcon
+                                onClick={() => {
+                                    clearTimeout(timeToClose)
+                               	    setPopUpProps(null)
+                                }}
+                            />
+                        </ClosePopUpBox>)}
+                    <Description>
+                        {message}
+                    </Description>
+                    {type==='question' && (
+                        <WrapperButtons>
+                            <YesButton onClick={funcAfterConfirmation}>Sim</YesButton>
+                            <NoButton 
+                                onClick={() => {
+                                    clearTimeout(timeToClose)
+                                    setPopUpProps(null)
+                                }}>
+                                Não
+                            </NoButton>
+                        </WrapperButtons>
+                    )}
                 </Container>
         )
 }
 
 PopUp.propTypes = {
-    setPopUpDatas: PropTypes.func,
-    iconName: PropTypes.string,
-    message: PropTypes.string,
+    setPopUpProps: PropTypes.func.isRequired,
+    type: PropTypes.string,
+    message: PropTypes.string.isRequired,
+    funcAfterConfirmation: PropTypes.func
 }
 
 export default PopUp

@@ -1,44 +1,41 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router'
-import AuthContext from '../../AuthContext'
+import AuthContext from '../../context/Auth'
 
-import Loading from '../../components/Loading'
+import Spinner from '../../components/Spinner'
 
-const withAuth = Component => {
-    const Auth = props => {
+const withUnAuth = Component => {
+    const UnAuth = props => {
 
-        const { isSigned, loading, authDatas } = useContext(AuthContext);
-        const router = useRouter()
+        const { isSigned, isLoading } = useContext(AuthContext);
 
         const LoadingContainer = (
             <div style={{height: '100vh', display: "flex", justifyContent: 'center', alignItems: 'center'}}>
-                <Loading size="large" color="#DC3545"/>
+                <Spinner size="large" color="#DC3545"/>
             </div>
         )
         
-        if (loading) {
+        if (isLoading){ 
+            console.log('loading page...')
             return LoadingContainer
         }
+        
+        if(isSigned){
+            console.log('replacing to lista-saloes!')
+            window.location.replace('http://localhost:3000/lista-saloes?redirect=true')
 
-        if(isSigned && authDatas && authDatas.client.permissionOf === 'normalUser'){
-            router.push({
-                pathname: '/lista-saloes',
-                query: {
-                    redirect: true
-                }
-            })
-                
             return LoadingContainer
         }
-
+        
         return <Component {...props}/>
+
     };
 
     if (Component.getInitialProps) {
-        Auth.getInitialProps = Component.getInitialProps;
+        UnAuth.getInitialProps = Component.getInitialProps;
     }
 
-    return Auth;
+    return UnAuth;
 };
 
-export default withAuth;
+export default withUnAuth;

@@ -12,8 +12,12 @@ export const Wrapper = styled.div`
 
     font-size: .9rem;
 
+    @media screen and (max-width: 450px){
+        font-size: .8rem;
+    }
+
     :not(:first-child){
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     & > ul{
@@ -23,16 +27,14 @@ export const Wrapper = styled.div`
     & > div.rate-box{
         color: #e7a74e;
         margin-right: 8px; 
+        font-weight: 500!important;
     }
 
     & > span{
         color: gray;
+        font-weight: 300;
         margin-right: 8px;
     }
-`
-
-export const SalonRate = styled.div`
-    display: flex;
 `
 
 export const RateIcon = styled(StarFill)`

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
 import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 
 import {
     Container,
@@ -15,23 +16,27 @@ import {
     CloseButton,
     CloseIcon,
 } from './style'
-import Link from 'next/link'
 
-import AuthContext from '../../AuthContext'
+import AuthContext from '../../context/Auth'
 
 function ProfileMenu(props){
 
     const {signOut} = useContext(AuthContext)
+    const router = useRouter()
 
     useEffect(() => {
         window.document.onclick = value => {
-            console.log(value.target)
-            if(typeof value.target.className === "string" && !value.target.className.includes('noClose')){
-                props.showMe(true)
-            } 
+            const className = value.target.className?.animVal || value.target.className            
+            if(typeof className === "string" && !className.includes('noClose'))
+                props.showMe()
         }
 
     },[])
+    
+    const handleNavigation = key => {
+        props.showMe()
+        router.push(key)
+    }
 
     return (
         <Container className="profileMenu">
@@ -44,47 +49,35 @@ function ProfileMenu(props){
                 Olá, {props.userName.includes(" ") ? props.userName.substr(0, props.userName.indexOf(' ')) : props.userName}
             </Header>
             <Wrapper id="options" className="noClose">
-                <Link href="/perfil/editar-dados">
-                    <Option 
-                        isActive={window.location.href.includes('editar-dados')}
-                        onClick={() => props.showMe(true)}>
+                <Option 
+                    isActive={window.location.href.includes('editar-dados')}
+                    onClick={() => handleNavigation('/perfil/editar-dados')}>
                         <EditProfileIcon/>
                         Editar Dados
-                    </Option>
-                </Link>
-                <Link href="/perfil/agendamentos">
-                    <Option 
-                        isActive={window.location.href.includes('agendamentos')}
-                        onClick={() => props.showMe(true)}>
+                </Option>
+                <Option 
+                    isActive={window.location.href.includes('agendamentos')}
+                    onClick={() => handleNavigation('/perfil/agendamentos')}>
                         <UserSchedulesIcon/>
                         Agendamentos
-                    </Option>
-                </Link>
-                <Link href="#">
-                    <Option 
-                        isActive={window.location.href.includes('#')}
-                        onClick={() => props.showMe(true)}>
+                </Option>
+                <Option 
+                    isActive={window.location.href.includes('#')}
+                    onClick={() => handleNavigation('#')}>
                         <UserFavoritesSalonIcon/>
                         Favoritos
-                    </Option>
-                </Link>
-                <Link href="#">
-                    <Option onClick={() => props.showMe(true)}>
-                        <UserRatesIcon/>
-                        Avaliações
-                    </Option>
-                </Link>
-                <Link
-                    href="/login"
-                >
-                    <Option onClick={() => {
-                        props.showMe()
-                        signOut()
-                    }}>
-                        <SignOutIcon/>
-                        Sair
-                    </Option>
-                </Link>
+                </Option>
+                <Option onClick={() => handleNavigation('#')}>
+                    <UserRatesIcon/>
+                    Avaliações
+                </Option>
+                <Option onClick={() => {
+                    signOut()
+                    handleNavigation('/login')
+                }}>
+                    <SignOutIcon/>
+                    Sair
+                </Option>
             </Wrapper>
         </Container>
     )

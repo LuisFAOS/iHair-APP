@@ -1,13 +1,13 @@
 import { Form as FormikForm } from 'formik'
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+export const InputsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
 
     margin: 15px 0px;
 
-    & > div.form-group{
+    & > div.input-content-box{
         display: flex;
         flex-direction: column;
 
@@ -15,10 +15,10 @@ export const Wrapper = styled.div`
         width: 48%;
     }
 
-    @media screen and (max-width: 550px){
+    @media screen and (max-width: 500px){
         flex-direction: column;
 
-        & > div.form-group{
+        & > div.input-content-box{
             width: 100%; 
         }
 
@@ -38,14 +38,24 @@ export const Form = styled(FormikForm)`
         display: none;
     }
 
-    @media screen and (max-width: 400px){
-        padding: 5px 10px;
+    @media screen and (max-width: 620px){
+        padding: 5px 20px;
+    }
+
+    @media screen and (max-width: 500px){
+        padding: 5px 25px;
     }
 `
 
-export const Title = styled.div`
+export const FormTitle = styled.h2`
     padding: 0px 15px 15px 15px;
 
     font-size: 1.7rem;
-    
+    font-weight: 300;
+
+    @media screen and (max-width: 500px){
+        font-size: 1.5rem;
+    }
 `
+
+

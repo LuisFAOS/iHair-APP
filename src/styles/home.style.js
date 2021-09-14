@@ -3,10 +3,8 @@ import styled, { css } from 'styled-components'
 import { EyeFill, HourglassSplit, StarFill } from 'styled-icons/bootstrap'
 import { Button } from '../components/Button.style'
 
-export const Container = styled.div`
-`
 
-export const Apresentation = styled.div`
+export const Presentation = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -45,15 +43,16 @@ export const ProjectDescription = styled.div`
 
     padding-left: 20px;
 
-    & > :first-child{
+    & > p.pseudo-slogan{
         font-size: 2.2rem;
         font-weight: 600;
 
         margin-bottom: 10px;
     }
-    & > :not(:first-child){
+    & > p.small-description{
         margin-bottom: 20px;
         font-size: .95rem;
+	font-weight: 300;
     }
 
     @media screen and (max-width: 1060px){
@@ -63,13 +62,13 @@ export const ProjectDescription = styled.div`
     }
 
     @media screen and (max-width: 620px){
-        & > :first-child{
+        & > p.pseudo-slogan{
             font-size: 1.7rem;
             font-weight: 600;
 
             margin-bottom: 10px;
         }
-        & > :not(:first-child){
+        & > p.small-description{
             margin-bottom: 40px;
             font-size: .85rem;
         }
@@ -85,7 +84,7 @@ export const SalonRegistrationBenefits = styled.div`
 
     margin-top: 40px;
 
-    & > p{
+    & > p.salon-registration-benefits-title{
         font-size: 1.4rem;
         text-align: center;
 
@@ -110,7 +109,7 @@ export const BenefitsList = styled.div`
     justify-content: center;
     align-items: center;
 
-    & > div{
+    & > div.wrapper-two-cards{
         display: flex;
         justify-content: space-around;
 
@@ -142,7 +141,7 @@ export const BenefitCard = styled.div`
     flex-direction: column;
     align-items: center;
 
-    height: 250px;
+    height: 220px;
     width: 180px;
     padding: 20px 10px;
 
@@ -152,7 +151,7 @@ export const BenefitCard = styled.div`
         margin: 0px 40px;
     }
 
-    & > div{
+    & > div.benefit-icon-box{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -168,14 +167,14 @@ export const BenefitCard = styled.div`
         }
     }
 
-    & > span{
+    & > span.benefit-title{
         font-size: 1.1rem;
     }
 
-    & > p{
+    & > p.benefit-description{
         text-align: center;
-
-        font-size: .9rem;
+	font-weight: 300;
+        font-size: .85rem;
     }
 
     transition: .15s;

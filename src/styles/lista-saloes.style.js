@@ -59,6 +59,11 @@ export const SalonListWrapper = styled.div`
     padding: 30px;
     padding-top: 0px;
 
+    @media screen and (max-width: 380px){
+        padding: 5px;
+        padding-top: 0px;
+    }
+
     @media screen and (max-width: 900px){
         height: 220vh;
         padding-bottom: 80px;

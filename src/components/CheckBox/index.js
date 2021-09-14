@@ -8,17 +8,12 @@ import {
     Container
 } from './style'
 
-function CheckBox({labelText, changed}){
-
-    const [isCheck, setIsCheck] = useState(false)
-
+function CheckBox({labelText, clicked, value}){
     return(
-        <Container onClick={() => {
-            setIsCheck(!isCheck)
-            changed(isCheck)
-        }}>
-            {isCheck ? <CheckFill/> : <Check/>}
-            <label htmlFor="check">
+        <Container onClick={clicked}>
+            {value ? <CheckFill/> : <Check/>}
+            <label
+                htmlFor="check">
                 {labelText} 
             </label>
         </Container>
@@ -27,7 +22,8 @@ function CheckBox({labelText, changed}){
 
 CheckBox.propTypes={
     labelText: PropTypes.string.isRequired,
-    changed: PropTypes.func.isRequired,
+    clicked: PropTypes.func.isRequired,
+    value: PropTypes.bool.isRequired
 }
 
 export default CheckBox

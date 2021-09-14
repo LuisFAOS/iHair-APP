@@ -17,16 +17,16 @@ function Card(props) {
                 <div className="rate-box">
                     <RateIcon/> {props.rate}
                 </div>
-                <span>
+                <span className="service-type">
                     • {props.typeService}
                 </span>
-                <span>
+                <span className="distance-between-salon-and-user">
                     • {props.distanceToUserHome}km
                 </span>
             </Wrapper>
             <Wrapper>
-                <span>
-                    Atendimento em: {props.waitingTime}min
+                <span className="waiting-time">
+                    Espera: {props.waitingTime}min
                 </span>
             </Wrapper>
         </Container>
@@ -34,10 +34,10 @@ function Card(props) {
 }
 
 Card.propTypes = {
-    rate: PropTypes.number,
-    typeService: PropTypes.string,
-    distanceToUserHome: PropTypes.number,
-    waitingTime: PropTypes.number,
+    rate: PropTypes.number.isRequired,
+    typeService: PropTypes.string.isRequired,
+    distanceToUserHome: PropTypes.number.isRequired,
+    waitingTime: PropTypes.number.isRequired,
 }
 
 export default Card

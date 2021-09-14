@@ -1,8 +1,8 @@
 {
-  "name": "iHair-APP",
+  "name": "ibeauty",
   "version": "1.0.0",
   "description": "",
-  "main": "home.js",
+  "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,17 +21,20 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",
-    "cep-promise": "^4.0.4",
+    "caniuse-lite": "^1.0.30001251",
+    "cep-promise": "^4.1.0",
     "cpf-cnpj-validator": "^1.0.3",
     "formik": "^2.2.6",
     "js-cookie": "^2.2.1",
     "next": "^10.0.5",
+    "nookies": "^2.5.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.2.1",
-    "styled-icons": "^10.26.0",
+    "styled-icons": "^10.37.0",
     "swr": "^0.4.2",
+    "unfetch": "^4.2.0",
     "yup": "^0.32.8"
   }
 }

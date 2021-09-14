@@ -1,20 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, memo, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { baseURL } from '../utils/baseURL'
-import AuthContext from '../AuthContext'
+import HandleUnAuthPage from '../utils/pagesAuthHandlers/pageUnAuth.handler'
+import AuthContext from '../context/Auth'
+import { useHTTP } from '../hooks'
 
-import Link from 'next/link'
-import TextInput from '../components/TextInput'
+import Head from '../components/Head'
+import TextInput from '../components/Fields/Text'
 import CheckBox from '../components/CheckBox'
 import PopUp from '../components/PopUp'
-import Loading from '../components/Loading'
-import WithUnAuth from '../HOCs/WithUnAuth'
+import Spinner from '../components/Spinner'
 
 import {
     Container,
     FormBox,
-    Header,
+    Title,
     Form,
     ForgotPasswordWrapper,
     LogoWrapper,
@@ -24,73 +26,47 @@ import {
 } from '../styles/login.style'
 
 function Login(props) {
-    
-    const router = useRouter()
 
-    const [popUpDatas, setPopUpDatas] = useState(null)
-    
+    const [popUpProps, setPopUpProps] = useState(null)
+    const [isLoading, sendRequest] = useHTTP()
+
     useEffect(() => {
         if(location.href.split("redirect=").pop() === 'true'){
-            setPopUpDatas({
-                iconName: 'warningIcon',
+            setPopUpProps({
+                type: 'warning',
                 message: 'Você tem que fazer login para continuar.'
             })
         }
-    }, [])
-
-    const {signIn} = useContext(AuthContext)
-
-    const [loginDatas, setLoginDatas] = useState({
+    },[])
+    
+    const router = useRouter()    
+    const { signIn } = useContext(AuthContext)
+ 
+    const [clientData, setClientData] = useState({
         email: '',
         password: ''
     })
     const [isSalonOwner, setIsSalonOwner] = useState(false)
-    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async () => {
-        setLoading(true)
-
-        try {
-            const apiURL = `${baseURL}/${isSalonOwner ? 'salon-owner' : 'normal-user'}/login`
-
-            const loginResponse = await fetch(apiURL,{
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json', 
-                },
-                body: JSON.stringify(loginDatas)
-            })
-
-            if(loginResponse.status >= 400 && loginResponse.status <= 499){
-                const error = await loginResponse.text()
-                setPopUpDatas({
-                    iconName: 'warningIcon',
-                    message: error
-                })
-            }else{
-                const authDatas = await loginResponse.json()
-                signIn(authDatas)
-                await router.push('/lista-saloes')
-            }
-        } catch (internalError) {
-            console.error(internalError)
-            setPopUpDatas({
-                iconName: 'warningIcon',
-                message: 'Erro interno. Por favor, aguarde.'
-            })
-        }
-
-        setLoading(false)
+        await sendRequest({
+            entity: isSalonOwner ? 'salon-owner/login' : 'normal-user/login',
+            body: clientData
+        }, newAuthClient => {
+            signIn(newAuthClient)
+            router.push('lista-saloes')
+        }, setPopUpProps)
     }
 
     return (
         <Container>
+            <Head title="iHair | login"/>
             {
-                popUpDatas &&
+                popUpProps &&
                     <PopUp
-                        setPopUpDatas={setPopUpDatas}
-                        iconName={popUpDatas.iconName}
-                        message={popUpDatas.message}   
+                        setPopUpProps={setPopUpProps}
+                        type={popUpProps.type}
+                        message={popUpProps.message}   
                     />
             }
 
@@ -99,30 +75,30 @@ function Login(props) {
                     <LogoImg src="logo.png"/>
                 </LogoWrapper>
 
-                <Header>
+                <Title>
                     Login
-                </Header>
+                </Title>
                     
                 <Form>
                     <TextInput 
                         name="email" 
-                        inputValue={loginDatas.email}
-                        changed={value => setLoginDatas({...loginDatas, email: value})}
+                        inputValue={clientData.email}
+                        changed={value => setClientData({...clientData, email: value})}
                         labelText="Email"/>
                     <TextInput 
                         name="password" 
-                        inputValue={loginDatas.password}
-                        changed={value => setLoginDatas({...loginDatas, password: value})}
+                        inputValue={clientData.password}
+                        changed={value => setClientData({...clientData, password: value})}
                         labelText="Senha"
-                        isPassword/>
+                        isPasswordInput/>
 
                     <CheckBox
                         value={isSalonOwner}
-                        changed={setIsSalonOwner}
+                        clicked={() => setIsSalonOwner(!isSalonOwner)}
                         labelText="Logar como dono de salão"
                     />
                     <ForgotPasswordWrapper>
-                        <Link href="#">
+                        <Link href="/esqueci-senha">
                             Esqueci minha senha!
                         </Link>
                     </ForgotPasswordWrapper>
@@ -132,15 +108,15 @@ function Login(props) {
                 <LoginButton
                     onClick={handleSubmit}
                 >
-                    {loading ? 
-                        <Loading 
+                    {isLoading ? 
+                        <Spinner
                             size="small"
                             color="black"
                         /> 
                             : 
                         "Entrar"}
                 </LoginButton>
-                <Link href="/cadastrar_usuario">
+                <Link href="/cadastrar-usuario">
                     <SignUpButton>
                             Cadastrar
                     </SignUpButton>
@@ -150,4 +126,10 @@ function Login(props) {
     )
 }
 
-export default WithUnAuth(Login)
+export async function getServerSideProps(ctx){
+    const possibleRedirect = HandleUnAuthPage(ctx)
+    
+    return possibleRedirect || {props: {}}
+}
+
+export default Login

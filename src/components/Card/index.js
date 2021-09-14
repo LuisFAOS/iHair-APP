@@ -5,35 +5,36 @@ import {
     Container,
     ImageBox,
     CardImage,
-    TextDatas,
+    DetailsBox,
     Title,
 } from './style'
 
 function Card(props) {
 
     return (
-        <Container>
+        <Container isClickable={props.isClickable}>
             <ImageBox>
                 <CardImage
+                    layout="fill"
                     src="/logo.png"
-                    height={85}
-                    width={85}
+                    className="image"
                 />
             </ImageBox>
-            <TextDatas>
+            <DetailsBox>
                 <Title>
                     {props.title}
                 </Title>
                 {props.children}
-            </TextDatas>
+            </DetailsBox>
         </Container>
     )
 }
 
 Card.propTypes = {
-    childre: PropTypes.element,
-    title: PropTypes.string,
+    children: PropTypes.element.isRequired,
+    title: PropTypes.string.isRequired,
     src: PropTypes.string,
+    isClickable: PropTypes.bool,
 }
 
 export default Card

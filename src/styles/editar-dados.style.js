@@ -25,6 +25,8 @@ export const FormBox = styled.div`
 `
 
 export const Form = styled.div`
+    min-height: 260px;
+
     & > div{
         margin-top: 5px!important;
     }
@@ -40,12 +42,25 @@ export const Title = styled.div`
 
 export const UpdateButton = styled(Button)`
     width: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export const ButtonBox = styled.div`
-    margin: 40px auto;
-    margin-bottom: 0px;
-
     display: flex;
     justify-content: center; 
+    
+    padding: 15px 0px;
+`
+
+export const LinkBox = styled.div`
+    display: flex;
+    justify-content: center;
+
+    & > a{
+        font-size: .95rem;
+    }
+
 `

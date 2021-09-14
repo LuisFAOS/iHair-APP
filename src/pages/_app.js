@@ -1,8 +1,8 @@
 import React from "react"
 
-import GlobalStyle from '../styles/Global.style'
+import GlobalStyle from '../styles/global.style'
 
-import {AuthProvider} from '../AuthContext'
+import {AuthProvider} from '../context/Auth'
 import Layout from "../components/Layout"
 
 export default function App({ Component, pageProps }) {

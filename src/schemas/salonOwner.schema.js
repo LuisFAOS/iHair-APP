@@ -1,11 +1,11 @@
 import * as Yup from "yup"
 
 const validations = Yup.object().shape({
-    completeName: Yup.string("O nome completo deve ser uma string.")
+    complete_name: Yup.string("O nome completo deve ser uma string.")
         .trim()
         .min(5, "Nome completo muito curto.")
         .max(100, "Nome completo muito longo.")
-        .matches('^[a-zA-Z0-9]+$','Nome completo inválido.')
+        .matches('^[a-zA-Z0-9àèìòùáéíóúâêîôûãõÀÈÌÒÙÁÉÍÓÚÂÊÎÔÛÃÕ ]+$','Nome completo inválido.')
         .required("Nome completo é obrigatório."),
         
     phone: Yup.string("O Tel/Cel deve ser uma string.")
